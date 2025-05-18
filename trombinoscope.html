@@ -135,7 +135,29 @@
     </style>
 </head>
 <body>
-    <h1>Trombinoscope</h1>
+
+    <header>
+        <nav>
+            <div class="logo">MDL du Lycée</div>
+            <button class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="journees-thematiques.html">Journées à Thèmes</a></li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="trombinoscope.html">Trombinoscope</a></li>
+                <li><a href="horaires.html">Horaires d'Ouverture</a></li>
+                <li><a href="prix.html">Prix</a></li>
+            </ul>
+            <div class="login-button">
+                <a href="https://page-de-connexion-html.vercel.app">Espace membre</a>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
     <div class="trombinoscope">
         <div class="ligne-1">
             <div class="personne">
@@ -221,30 +243,10 @@
             </div>
         </div>
     </div>
-    <a href="../page_accueil.html" class="logout-link">Retour à l'accueil</a>
-
-    <script>
-        async function checkAuth() {
-            const isLoggedIn = localStorage.getItem('username');
-            if (!isLoggedIn) {
-                window.location.href = '../index.html';
-                return false;
-            }
-            return true;
-        }
-
-        async function redirectToLoginIfNotAuthenticated() {
-            if (!await checkAuth()) {
-                // La redirection a déjà été effectuée par checkAuth
-                return;
-            }
-            // Si l'utilisateur est connecté, vous pouvez ajouter ici
-            // du code supplémentaire à exécuter au chargement de la page.
-            // Par exemple, charger des données spécifiques au trombinoscope depuis une API.
-            console.log("Utilisateur connecté, la page Trombinoscope est chargée.");
-        }
-
-        document.addEventListener('DOMContentLoaded', redirectToLoginIfNotAuthenticated);
-    </script>
+    </main>
+    <footer>
+        <p>&copy; 2025 MDL du Lycée Château Blanc</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
