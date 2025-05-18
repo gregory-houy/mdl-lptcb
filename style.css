@@ -67,14 +67,14 @@ nav {
     margin-left: 15px;
 }
 
-.nav-links li a {
+.nav-links li {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.nav-links li a:hover {
-    color: #ddd;
+.nav-links li:hover {
+    color: skyblue;
 }
 
 .nav-links li a.active {
