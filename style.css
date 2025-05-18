@@ -95,7 +95,8 @@ nav {
 }
 
 .login-button a:hover {
-    background-color: #00FF00;
+    background-color: #0056b3;
+    color: skyblue;
 }
 
 main {
