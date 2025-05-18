@@ -1,0 +1,251 @@
+/* Styles généraux pour le body et le container (cohérent avec les autres pages) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; /* Reset margin pour une meilleure gestion avec le header sticky */
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6; /* Ajouter une hauteur de ligne par défaut */
+}
+
+.container {
+    max-width: 1200px; /* Conserver la largeur maximale */
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour le header et la navigation */
+header {
+    background-color: #fff; /* Fond blanc */
+    color: #2d3748; /* Couleur de texte plus foncée */
+    padding: 15px 20px; /* Ajuster le padding pour un header plus compact */
+    border-bottom: 2px solid #edf2f7; /* Bordure plus claire */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0; /* Pas de bords arrondis pour le header principal */
+    margin-bottom: 20px; /* Espacement sous le header */
+    position: sticky; /* Header fixe en haut */
+    top: 0;
+    z-index: 100; /* S'assurer qu'il est au-dessus du contenu */
+}
+
+header .logo {
+    font-size: 1.8em; /* Légèrement plus petit */
+    margin: 0;
+    font-weight: bold; /* Assurer que le logo reste bien visible */
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end; /* Aligner la navigation à droite par défaut */
+    align-items: center;
+    width: auto; /* Ajuster la largeur automatiquement */
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 15px; /* Espacement plus petit entre les liens */
+}
+
+.nav-links li:first-child {
+    margin-left: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4a5568; /* Couleur de lien */
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    padding: 8px 10px; /* Ajouter un peu de padding pour la cliquabilité */
+    border-radius: 5px; /* Adoucir les bords des liens */
+}
+
+.nav-links a:hover {
+    color: #4299e1; /* Couleur au survol */
+    background-color: #f7fafc; /* Léger fond au survol */
+}
+
+.nav-links a.active {
+    font-weight: bold;
+    color: #2b6cb0; /* Couleur active */
+}
+
+.login-button a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4299e1;
+    padding: 8px 12px; /* Ajuster le padding du bouton */
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+    margin-left: 15px; /* Espacement depuis le dernier lien */
+}
+
+.login-button a:hover {
+    background-color: #2b6cb0;
+}
+
+.hamburger-menu {
+    display: none; /* Cacher par défaut */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px; /* Taille plus petite */
+    height: 18px; /* Taille plus petite */
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.hamburger-menu span {
+    display: block;
+    height: 2px; /* Traits plus fins */
+    background-color: #2d3748; /* Couleur des traits */
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Style pour le footer */
+footer {
+    background-color: #4a5568; /* Gris plus foncé */
+    color: #edf2f7; /* Gris très clair pour le texte */
+    padding: 20px; /* Padding plus uniforme */
+    text-align: center;
+    font-size: 0.85rem; /* Taille de police légèrement plus petite */
+    border-top: 2px solid #cbd5e0; /* Bordure plus claire */
+    border-radius: 0; /* Pas de bords arrondis pour le footer principal */
+    margin-top: 30px; /* Espacement au-dessus du footer */
+}
+
+footer p {
+    margin: 6px 0; /* Espacement plus petit */
+}
+
+footer a {
+    color: #f7fafc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+footer a:hover {
+    color: #4299e1; /* Couleur au survol */
+}
+
+/* Styles spécifiques au trombinoscope (vous pouvez les laisser tels quels ou les adapter) */
+.trombinoscope {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center; /* Centrer les groupes de personnes */
+}
+
+.ligne-1, .ligne-2, .ligne-3, .ligne-4, .ligne-5, .ligne-6 {
+    display: flex;
+    gap: 20px;
+    justify-content: center; /* Centrer les personnes sur chaque ligne */
+}
+
+.personne {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: solid 1px #ccc;
+    width: 160px; /* Légèrement plus petit */
+    height: 180px; /* Légèrement plus petit */
+    border-radius: 15px; /* Bords moins arrondis */
+    padding: 10px;
+}
+
+.personne:hover {
+    background: #efeaea;
+}
+
+.personne img {
+    width: 80px; /* Plus petit */
+    height: 80px; /* Plus petit */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 3px; /* Espacement plus petit */
+    border: 1px solid #ccc;
+}
+
+.personne h3 {
+    margin-top: 3px;
+    margin-bottom: 1px;
+    font-size: 0.9em; /* Taille de police plus petite */
+}
+
+.personne p {
+    margin-bottom: 0;
+    font-size: 0.8em; /* Taille de police plus petite */
+    color: #555;
+}
+
+/* Style pour le lien de retour */
+.logout-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #4299e1; /* Couleur bleue */
+    text-decoration: none;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design pour le menu hamburger */
+@media (max-width: 600px) {
+    nav .nav-links {
+        display: none; /* Cacher la navigation par défaut sur les petits écrans */
+        flex-direction: column;
+        background-color: #fff; /* Fond blanc pour le menu déroulant */
+        position: absolute;
+        top: 56px; /* Ajuster en fonction de la hauteur du header */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajouter une ombre pour la séparation */
+        z-index: 10; /* S'assurer qu'il est au-dessus du contenu */
+    }
+
+    nav .nav-links.open {
+        display: flex; /* Afficher le menu quand la classe 'open' est ajoutée */
+    }
+
+    nav .nav-links li {
+        margin: 10px 0; /* Espacement plus petit dans le menu déroulant */
+    }
+
+    nav .login-button {
+        display: block; /* Afficher le bouton de connexion dans le menu déroulant */
+        margin: 10px auto; /* Centrer le bouton de connexion */
+    }
+
+    nav .login-button a {
+        margin-left: 0; /* Supprimer la marge à gauche */
+        display: block; /* Prendre toute la largeur disponible */
+        width: 80%; /* Ajuster la largeur du bouton */
+        margin: 10px auto; /* Centrer le bouton */
+    }
+
+    .hamburger-menu {
+        display: flex; /* Afficher le bouton hamburger sur les petits écrans */
+    }
+
+    header nav {
+        justify-content: space-between; /* Espacer le logo et le hamburger */
+    }
+}
