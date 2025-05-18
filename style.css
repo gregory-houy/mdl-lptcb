@@ -1,47 +1,87 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 960px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
+/* Styles pour le header et la navigation */
 header {
-    background-color: #333;
-    color: white;
-    padding: 1em 0;
-}
-
-nav {
+    background-color: #fff; /* Fond blanc */
+    color: #2d3748; /* Couleur de texte plus foncée */
+    padding: 15px 20px; /* Ajuster le padding pour un header plus compact */
+    border-bottom: 2px solid #edf2f7; /* Bordure plus claire */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    max-width: 960px;
-    margin: 0 auto;
-    position: relative; /* Important pour positionner le menu déroulant */
+    border-radius: 0; /* Pas de bords arrondis pour le header principal */
+    margin-bottom: 20px; /* Espacement sous le header */
+    position: sticky; /* Header fixe en haut */
+    top: 0;
+    z-index: 100; /* S'assurer qu'il est au-dessus du contenu */
 }
 
-.logo {
-    font-size: 1.5em;
+header .logo {
+    font-size: 1.8em; /* Légèrement plus petit */
+    margin: 0;
+    font-weight: bold; /* Assurer que le logo reste bien visible */
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-end; /* Aligner la navigation à droite par défaut */
+    align-items: center;
+    width: auto; /* Ajuster la largeur automatiquement */
+}
+
+header nav .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header nav .nav-links li {
+    margin-left: 15px; /* Espacement plus petit entre les liens */
+}
+
+header nav .nav-links li:first-child {
+    margin-left: 0;
+}
+
+header nav .nav-links a {
+    text-decoration: none;
+    color: #4a5568; /* Couleur de lien */
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    padding: 8px 10px; /* Ajouter un peu de padding pour la cliquabilité */
+    border-radius: 5px; /* Adoucir les bords des liens */
+}
+
+header nav .nav-links a:hover {
+    color: #4299e1; /* Couleur au survol */
+    background-color: #f7fafc; /* Léger fond au survol */
+}
+
+header nav .nav-links a.active {
     font-weight: bold;
+    color: #2b6cb0; /* Couleur active */
+}
+
+header nav .login-button a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4299e1;
+    padding: 8px 12px; /* Ajuster le padding du bouton */
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+    margin-left: 15px; /* Espacement depuis le dernier lien */
+}
+
+header nav .login-button a:hover {
+    background-color: #2b6cb0;
 }
 
 .hamburger-menu {
-    display: none; /* Cacher par défaut sur les écrans plus larges */
+    display: none; /* Cacher par défaut */
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 20px;
+    width: 25px; /* Taille plus petite */
+    height: 18px; /* Taille plus petite */
     cursor: pointer;
     padding: 0;
     border: none;
@@ -50,162 +90,52 @@ nav {
 
 .hamburger-menu span {
     display: block;
-    height: 3px;
-    background-color: white; /* Couleur des traits */
-    border-radius: 3px;
+    height: 2px; /* Traits plus fins */
+    background-color: #2d3748; /* Couleur des traits */
+    border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links li {
-    margin-left: 20px;
-}
-
-.nav-links li a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-    color: #ddd;
-}
-
-.nav-links li a.active {
-    font-weight: bold;
-    color: #ddd;
-}
-
-.login-button a {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-}
-
-.login-button a:hover {
-    background-color: #0056b3;
-}
-
-main {
-    padding: 20px;
-}
-
-h1, h2 {
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.hero {
-    text-align: center;
-    padding: 40px 0;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.history-section {
-    padding: 20px;
-    background-color: #eee;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.event, .news-item, .pricing, .opening-hours {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #fff;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-footer {
-    text-align: center;
-    padding: 0.3em 0; /* Réduction supplémentaire du padding vertical */
-    background-color: #333;
-    color: white;
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    font-size: 0.7em; /* Réduction supplémentaire de la taille de la police */
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .nav-links {
+/* Responsive design pour le menu hamburger */
+@media (max-width: 600px) {
+    header nav .nav-links { /* Cibler spécifiquement la navigation dans le header */
         display: none; /* Cacher la navigation par défaut sur les petits écrans */
         flex-direction: column;
-        background-color: #333; /* Fond du menu déroulant */
+        background-color: #fff; /* Fond blanc pour le menu déroulant */
         position: absolute;
-        top: 60px; /* Ajuster en fonction de la hauteur de votre barre de navigation */
+        top: 56px; /* Ajuster en fonction de la hauteur du header */
         left: 0;
         width: 100%;
         text-align: center;
-        z-index: 10; /* Pour s'assurer qu'il est au-dessus des autres éléments */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajouter une ombre pour la séparation */
+        z-index: 10; /* S'assurer qu'il est au-dessus du contenu */
     }
 
-    .nav-links.open {
+    header nav .nav-links.open { /* Cibler spécifiquement la navigation ouverte dans le header */
         display: flex; /* Afficher le menu quand la classe 'open' est ajoutée */
     }
 
-    .nav-links li {
-        margin: 15px 0;
+    header nav .nav-links li { /* Cibler spécifiquement les éléments de liste dans le header */
+        margin: 10px 0; /* Espacement plus petit dans le menu déroulant */
+    }
+
+    header nav .login-button { /* Cibler spécifiquement le bouton de connexion dans le header */
+        display: block; /* Afficher le bouton de connexion dans le menu déroulant */
+        margin: 10px auto; /* Centrer le bouton de connexion */
+    }
+
+    header nav .login-button a { /* Cibler spécifiquement le lien de connexion dans le header */
+        margin-left: 0; /* Supprimer la marge à gauche */
+        display: block; /* Prendre toute la largeur disponible */
+        width: 80%; /* Ajuster la largeur du bouton */
+        margin: 10px auto; /* Centrer le bouton */
     }
 
     .hamburger-menu {
         display: flex; /* Afficher le bouton hamburger sur les petits écrans */
     }
 
-    /* Animation du bouton hamburger lors de l'ouverture */
-    .hamburger-menu.open span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-
-    .hamburger-menu.open span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger-menu.open span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-
-    nav ul { /* Suppression des styles flex pour la navigation principale sur petit écran */
-        display: block;
-    }
-
-    .login-button {
-        margin-top: 10px; /* Ajuster la position du bouton de connexion */
+    header nav {
+        justify-content: space-between; /* Espacer le logo et le hamburger */
     }
 }
