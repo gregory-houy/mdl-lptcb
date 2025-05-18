@@ -28,6 +28,7 @@ nav {
     padding: 0 20px;
     max-width: 960px;
     margin: 0 auto;
+    position: relative; /* Important pour positionner le menu déroulant */
 }
 
 .logo {
@@ -35,28 +36,48 @@ nav {
     font-weight: bold;
 }
 
-nav ul {
+.hamburger-menu {
+    display: none; /* Cacher par défaut sur les écrans plus larges */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.hamburger-menu span {
+    display: block;
+    height: 3px;
+    background-color: white; /* Couleur des traits */
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
 }
 
-nav ul li {
+.nav-links li {
     margin-left: 20px;
 }
 
-nav ul li a {
+.nav-links li a {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+.nav-links li a:hover {
     color: #ddd;
 }
 
-nav ul li a.active {
+.nav-links li a.active {
     font-weight: bold;
     color: #ddd;
 }
@@ -135,7 +156,7 @@ footer {
     padding: 0.3em 0; /* Réduction supplémentaire du padding vertical */
     background-color: #333;
     color: white;
-    position: relative;
+    position: sticky;
     bottom: 0;
     width: 100%;
     font-size: 0.7em; /* Réduction supplémentaire de la taille de la police */
@@ -143,31 +164,48 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    nav {
+    .nav-links {
+        display: none; /* Cacher la navigation par défaut sur les petits écrans */
         flex-direction: column;
-        align-items: flex-start;
+        background-color: #333; /* Fond du menu déroulant */
+        position: absolute;
+        top: 60px; /* Ajuster en fonction de la hauteur de votre barre de navigation */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 10; /* Pour s'assurer qu'il est au-dessus des autres éléments */
     }
 
-    nav ul {
-        margin-top: 10px;
-        flex-direction: column;
+    .nav-links.open {
+        display: flex; /* Afficher le menu quand la classe 'open' est ajoutée */
     }
 
-    nav ul li {
-        margin-left: 0;
-        margin-bottom: 10px;
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .hamburger-menu {
+        display: flex; /* Afficher le bouton hamburger sur les petits écrans */
+    }
+
+    /* Animation du bouton hamburger lors de l'ouverture */
+    .hamburger-menu.open span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger-menu.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.open span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    nav ul { /* Suppression des styles flex pour la navigation principale sur petit écran */
+        display: block;
     }
 
     .login-button {
-        margin-top: 10px;
-    }
-
-    .container {
-        margin: 10px;
-        padding: 10px;
-    }
-
-    .hero h1 {
-        font-size: 2em;
+        margin-top: 10px; /* Ajuster la position du bouton de connexion */
     }
 }
