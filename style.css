@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    max-width: 960px;
+    width: 960px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -16,7 +16,7 @@ body {
 }
 
 .container.trombinoscope {
-    max-width: 1400px;
+    width: 960px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
