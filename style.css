@@ -18,19 +18,17 @@ body {
 header {
     background-color: #333;
     color: white;
-    padding: 1em 20px; /* Ajouter du padding horizontal pour aligner avec nav */
-    display: flex;
-    justify-content: space-between; /* Espacement par défaut pour PC */
-    align-items: center;
+    padding: 1em 0;
 }
 
 nav {
     display: flex;
-    justify-content: space-between; /* Espacement par défaut pour PC */
+    justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
     max-width: 1600px;
     margin: 0 auto;
-    width: 100%; /* Pour que nav prenne toute la largeur du header */
+    position: relative; /* Important pour positionner le menu déroulant */
 }
 
 .logo {
@@ -167,47 +165,48 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    header {
-        display: grid;
-        grid-template-columns: auto 1fr auto; /* Colonnes pour menu, logo, bouton */
-        align-items: center;
-        padding: 1em 20px; /* Conserver le padding horizontal */
-    }
-
-    nav {
-        display: none; /* Cacher la navigation principale sur téléphone */
-    }
-
-    .logo {
-        text-align: center;
-        margin: 0;
-    }
-
-    .hamburger-menu {
-        display: flex; /* Afficher le bouton hamburger */
-    }
-
-    .login-button {
-        /* Conserver les styles de base */
-    }
-
     .nav-links {
-        display: none;
+        display: none; /* Cacher la navigation par défaut sur les petits écrans */
         flex-direction: column;
-        background-color: #333;
+        background-color: #333; /* Fond du menu déroulant */
         position: absolute;
-        top: 60px; /* Ajuster si la hauteur du header change */
+        top: 60px; /* Ajuster en fonction de la hauteur de votre barre de navigation */
         left: 0;
         width: 100%;
         text-align: center;
-        z-index: 10;
+        z-index: 10; /* Pour s'assurer qu'il est au-dessus des autres éléments */
     }
 
     .nav-links.open {
-        display: flex;
+        display: flex; /* Afficher le menu quand la classe 'open' est ajoutée */
     }
 
     .nav-links li {
         margin: 15px 0;
+    }
+
+    .hamburger-menu {
+        display: flex; /* Afficher le bouton hamburger sur les petits écrans */
+    }
+
+    /* Animation du bouton hamburger lors de l'ouverture */
+    .hamburger-menu.open span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger-menu.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.open span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    nav ul { /* Suppression des styles flex pour la navigation principale sur petit écran */
+        display: block;
+    }
+
+    .login-button {
+        margin-top: 10px; /* Ajuster la position du bouton de connexion */
     }
 }
