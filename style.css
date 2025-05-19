@@ -1,47 +1,118 @@
+/* Styles généraux pour le body et le container (cohérent avec les autres pages) */
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
+    padding: 0;
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
     max-width: 1200px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 1em 0;
+main {
+    flex-grow: 1;
 }
 
-nav {
+/* Style pour le header et la navigation */
+header {
+    background-color: #fff;
+    color: #2d3748;
+    padding: 15px 20px;
+    border-bottom: 2px solid #edf2f7;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
-    max-width: 1600px;
-    margin: 0 auto;
-    position: relative; /* Important pour positionner le menu déroulant */
+    border-radius: 0;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.logo {
-    font-size: 1.5em;
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header .logo {
+    font-size: 1.8em;
+    margin: 0;
     font-weight: bold;
 }
 
+header nav .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+header nav .nav-links li {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+header nav .nav-links li:first-child {
+    margin-left: 0;
+}
+
+header nav .nav-links a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+header nav .nav-links a:hover {
+    color: #4299e1;
+    background-color: #f7fafc;
+}
+
+header nav .nav-links a.active {
+    font-weight: bold;
+    color: #2b6cb0;
+}
+
+header nav .login-button {
+    margin-left: 20px;
+}
+
+header nav .login-button a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #4299e1;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+}
+
+header nav .login-button a:hover {
+    background-color: #2b6cb0;
+}
+
 .hamburger-menu {
-    display: none; /* Cacher par défaut sur les écrans plus larges */
+    display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 20px;
+    width: 25px;
+    height: 18px;
     cursor: pointer;
     padding: 0;
     border: none;
@@ -50,163 +121,170 @@ nav {
 
 .hamburger-menu span {
     display: block;
-    height: 3px;
-    background-color: white; /* Couleur des traits */
-    border-radius: 3px;
+    height: 2px;
+    background-color: #2d3748;
+    border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.nav-links li {
-    margin-left: 15px;
-}
-
-.nav-links li a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-    color: #ddd;
-}
-
-.nav-links li a.active {
-    font-weight: bold;
-    color: #ddd;
-}
-
-.login-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-}
-
-.login-button:hover {
-    background-color: #0056b3;
-    color: skyblue;
-}
-
-main {
-    padding: 20px;
-}
-
-h1, h2 {
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.hero {
-    text-align: center;
-    padding: 40px 0;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.history-section {
-    padding: 20px;
-    background-color: #eee;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.event, .news-item, .pricing, .opening-hours {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background-color: #fff;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
+/* Style pour le footer */
 footer {
+    background-color: #4a5568;
+    color: #edf2f7;
+    padding: 10px 20px;
     text-align: center;
-    padding: 0.3em 0; /* Réduction supplémentaire du padding vertical */
-    background-color: #333;
-    color: white;
-    position: fixed;
-    bottom: 0;
+    font-size: 0.85rem;
+    border-top: 2px solid #cbd5e0;
+    border-radius: 0;
     width: 100%;
-    font-size: 0.7em; /* Réduction supplémentaire de la taille de la police */
+    box-sizing: border-box;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Cacher la navigation par défaut sur les petits écrans */
+/* Styles spécifiques au trombinoscope */
+.trombinoscope {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.ligne-1, .ligne-2, .ligne-3, .ligne-4, .ligne-5, .ligne-6 {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.personne {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: solid 1px #ccc;
+    width: 160px;
+    height: 180px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.personne:hover {
+    background: #efeaea;
+}
+
+.personne img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 3px;
+    border: 1px solid #ccc;
+}
+
+.personne h3 {
+    margin-top: 3px;
+    margin-bottom: 1px;
+    font-size: 0.9em;
+}
+
+.personne p {
+    margin-bottom: 0;
+    font-size: 0.8em;
+    color: #555;
+}
+
+/* Style pour le lien de retour sur la page trombinoscope (si nécessaire) */
+.logout-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design pour le menu hamburger */
+@media (max-width: 600px) {
+    header nav {
+        justify-content: space-between;
+    }
+
+    header nav .nav-links {
+        display: none;
         flex-direction: column;
-        background-color: #333; /* Fond du menu déroulant */
+        background-color: #fff;
         position: absolute;
-        top: 60px; /* Ajuster en fonction de la hauteur de votre barre de navigation */
+        top: 56px;
         left: 0;
         width: 100%;
         text-align: center;
-        z-index: 10; /* Pour s'assurer qu'il est au-dessus des autres éléments */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 10;
     }
 
-    .nav-links.open {
-        display: flex; /* Afficher le menu quand la classe 'open' est ajoutée */
+    header nav .nav-links.open {
+        display: flex;
     }
 
-    .nav-links li {
-        margin: 15px 0;
+    header nav .nav-links li {
+        margin: 10px 0;
+    }
+
+    header nav .nav-links li:nth-child(even) {
+        display: none;
+    }
+
+    header nav .login-button {
+        display: block;
+        margin: 10px auto;
+    }
+
+    header nav .login-button a {
+        margin-left: 0;
+        display: block;
+        width: 80%;
+        margin: 10px auto;
     }
 
     .hamburger-menu {
-        display: flex; /* Afficher le bouton hamburger sur les petits écrans */
+        display: flex;
     }
 
-    /* Animation du bouton hamburger lors de l'ouverture */
-    .hamburger-menu.open span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
+    /* Styles trombinoscope en mode téléphone */
+    .trombinoscope {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+        padding: 10px;
     }
 
-    .hamburger-menu.open span:nth-child(2) {
-        opacity: 0;
+    .ligne-1, .ligne-2, .ligne-3, .ligne-4, .ligne-5, .ligne-6 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 
-    .hamburger-menu.open span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
+    .personne {
+        width: calc(50% - 10px);
+        height: auto;
+        border-radius: 10px;
+        padding: 8px;
     }
 
-    nav ul { /* Suppression des styles flex pour la navigation principale sur petit écran */
-        display: block;
+    .personne img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 2px;
     }
 
-    .login-button {
-        margin-top: 10px; /* Ajuster la position du bouton de connexion */
+    .personne h3 {
+        font-size: 0.8em;
+        margin-top: 2px;
+        margin-bottom: 1px;
+    }
+
+    .personne p {
+        font-size: 0.7em;
     }
 }
