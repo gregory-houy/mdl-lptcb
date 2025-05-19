@@ -24,7 +24,7 @@ body {
 }
 
 .logo-container img {
-    max-width: 150px; /* Agrandissement de la taille maximale sur PC */
+    max-width: 250px; /* Agrandissement de la taille maximale sur PC */
     height: auto;
     margin: 0 20px; /* Augmentation de l'espacement sur PC */
 }
@@ -191,7 +191,7 @@ footer {
     }
 
     .logo-container img {
-        max-width: 120px; /* Agrandissement de la taille maximale sur mobile */
+        max-width: 150px; /* Agrandissement de la taille maximale sur mobile */
         margin: 0 10px; /* Augmentation de l'espacement sur mobile */
     }
 
