@@ -24,9 +24,9 @@ body {
 }
 
 .logo-container img {
-    max-width: 100px; /* Taille maximale pour les logos sur PC */
+    max-width: 150px; /* Agrandissement de la taille maximale sur PC */
     height: auto;
-    margin: 0 10px; /* Espacement entre les logos sur PC */
+    margin: 0 20px; /* Augmentation de l'espacement sur PC */
 }
 
 header {
@@ -191,8 +191,8 @@ footer {
     }
 
     .logo-container img {
-        max-width: 80px; /* Taille légèrement plus petite sur mobile */
-        margin: 0 5px; /* Espacement réduit entre les logos sur mobile */
+        max-width: 120px; /* Agrandissement de la taille maximale sur mobile */
+        margin: 0 10px; /* Augmentation de l'espacement sur mobile */
     }
 
     .nav-links {
