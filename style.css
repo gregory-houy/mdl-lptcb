@@ -1,9 +1,8 @@
 body {
-    font-family: sans-serif;
-    margin: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assurer que le body occupe au moins la hauteur de la fenêtre */
+    margin: 0; /* Réinitialiser la marge du body */
 }
 
 .container {
@@ -100,7 +99,7 @@ nav {
 }
 
 main {
-    padding: 20px;
+    flex-grow: 1; /* Permettre à la partie principale de grandir et de pousser le footer vers le bas */
 }
 
 h1, h2 {
@@ -151,18 +150,18 @@ th {
     background-color: #f2f2f2;
     font-weight: bold;
 }
-
 footer {
+    background-color: #4a5568; /* Gris plus foncé */
+    color: #edf2f7; /* Gris très clair pour le texte */
+    padding: 20px; /* Padding plus uniforme */
     text-align: center;
-    padding: 0.3em 0; /* Réduction supplémentaire du padding vertical */
-    background-color: #333;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    font-size: 0.7em; /* Réduction supplémentaire de la taille de la police */
+    font-size: 0.85rem; /* Taille de police légèrement plus petite */
+    border-top: 2px solid #cbd5e0; /* Bordure plus claire */
+    border-radius: 0; /* Pas de bords arrondis pour le footer principal */
+    /* Suppression de la marge du haut pour le positionnement */
+    width: 100%; /* Assurer que le footer prend toute la largeur */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
 }
-
 /* Responsive design */
 @media (max-width: 768px) {
     .nav-links {
