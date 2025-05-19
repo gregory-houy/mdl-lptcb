@@ -4,9 +4,6 @@ body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Pour que le footer se positionne correctement */
 }
 
 .container {
@@ -16,19 +13,19 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex-grow: 1; /* Pour que le main occupe l'espace disponible */
 }
 
 header {
     background-color: #333;
     color: white;
-    padding: 1em 20px; /* Ajouter du padding horizontal pour correspondre à nav */
+    padding: 1em 0;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
     max-width: 1600px;
     margin: 0 auto;
     position: relative; /* Important pour positionner le menu déroulant */
@@ -64,12 +61,10 @@ nav {
     list-style: none;
     padding: 0;
     margin: 0;
-    align-items: center; /* Aligner les éléments verticalement */
 }
 
 .nav-links li {
-    margin-left: 10px; /* Réduire l'espacement par défaut */
-    margin-right: 10px;
+    margin-left: 15px;
 }
 
 .nav-links li a {
@@ -97,7 +92,6 @@ nav {
     text-decoration: none;
     font-size: 0.9em;
     transition: background-color 0.3s ease;
-    margin-left: 15px; /* Ajouter une marge à gauche pour le séparer des liens sur PC */
 }
 
 .login-button:hover {
@@ -163,6 +157,8 @@ footer {
     padding: 0.3em 0; /* Réduction supplémentaire du padding vertical */
     background-color: #333;
     color: white;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     font-size: 0.7em; /* Réduction supplémentaire de la taille de la police */
 }
@@ -211,12 +207,6 @@ footer {
     }
 
     .login-button {
-        margin-top: 15px; /* Ajouter une marge pour séparer du dernier lien */
-        margin-left: 0; /* Réinitialiser la marge pour le centrer */
-        width: 80%; /* Prendre une largeur raisonnable dans le menu */
-        margin-right: auto;
-        margin-left: auto;
-        display: block; /* Afficher comme un bloc pour prendre toute la largeur */
-        text-align: center; /* Centrer le texte à l'intérieur du bouton */
+        margin-top: 10px; /* Ajuster la position du bouton de connexion */
     }
 }
