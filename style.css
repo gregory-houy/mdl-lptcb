@@ -153,12 +153,11 @@ th {
 footer {
     background-color: #4a5568; /* Gris plus foncé */
     color: #edf2f7; /* Gris très clair pour le texte */
-    padding: 20px; /* Padding plus uniforme */
+    padding: 10px 20px; /* Réduction du padding vertical (haut et bas) à 10px */
     text-align: center;
     font-size: 0.85rem; /* Taille de police légèrement plus petite */
     border-top: 2px solid #cbd5e0; /* Bordure plus claire */
     border-radius: 0; /* Pas de bords arrondis pour le footer principal */
-    /* Suppression de la marge du haut pour le positionnement */
     width: 100%; /* Assurer que le footer prend toute la largeur */
     box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
 }
