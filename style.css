@@ -251,8 +251,10 @@ footer {
 
 .mdl-ouverte{
     color: #3eff00;
+    font-weight: bold;
 }
 
 .mdl-fermee{
     color: red;
+    font-weight: bold;
 }
