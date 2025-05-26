@@ -248,3 +248,11 @@ footer {
         font-size: 2em; /* Ajuster la taille du titre sur mobile */
     }
 }
+
+.mdl-ouverte{
+    color: green;
+}
+
+.mdl-fermee{
+    color: red;
+}
