@@ -156,12 +156,21 @@ h1, h2 {
 table {
     width: 100%;
     border-collapse: collapse;
+    /* --- NOUVELLE RÈGLE CLÉ --- */
+    table-layout: fixed; /* Force le navigateur à ignorer le contenu pour la largeur */
+    /* --- FIN DE LA NOUVELLE RÈGLE CLÉ --- */
 }
 
 th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: left;
+    /* --- RÉGLAGES POUR L'ÉGALITÉ DES COLONNES --- */
+    width: 33.33%; /* Chaque colonne prendra un tiers de la largeur du tableau */
+    overflow: hidden; /* Masque le contenu qui dépasse */
+    text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est coupé */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    /* --- FIN DES RÉGLAGES --- */
 }
 
 th {
@@ -169,26 +178,26 @@ th {
     font-weight: bold;
 }
 
-/* --- NOUVELLES RÈGLES POUR LA LARGEUR DE LA PREMIÈRE COLONNE DU TABLEAU --- */
+/* Les anciennes règles pour first-child ne sont plus nécessaires avec table-layout: fixed et width: 33.33% */
+/*
 table th:first-child {
-    width: 150px; /* Adaptez cette valeur à la largeur désirée */
-    min-width: 150px; /* S'assure que la colonne ne sera jamais plus petite */
-    max-width: 150px; /* S'assure que la colonne ne sera jamais plus grande */
-    overflow: hidden; /* Masque le contenu qui dépasse si nécessaire */
-    text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est coupé */
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-}
-
-table td:first-child {
-    width: 150px; /* Adaptez cette valeur à la largeur désirée */
+    width: 150px;
     min-width: 150px;
     max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    white-space: nowrap;
 }
-/* --- FIN DES NOUVELLES RÈGLES --- */
 
+table td:first-child {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+*/
 
 footer {
     text-align: center;
