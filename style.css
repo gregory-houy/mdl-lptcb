@@ -256,21 +256,21 @@ footer {
         font-size: 2em;
     }
 
-    /* --- NOUVELLES RÈGLES POUR LE TABLEAU DÉFILABLE SUR MOBILE --- */
-    /* Nous allons réintroduire une largeur minimale pour les cellules */
-    th, td {
-        min-width: 100px; /* Une largeur minimale raisonnable pour que le texte ne soit pas trop compressé */
-        width: auto; /* Permet aux colonnes de grandir au-delà de 33.33% si nécessaire pour le scroll */
-        white-space: nowrap; /* Garde le texte sur une seule ligne (nécessaire pour le scroll) */
-        overflow: hidden; /* Cache le débordement dans la cellule elle-même */
-        text-overflow: ellipsis; /* Affiche les points de suspension si le texte est coupé DANS la cellule */
+    /* --- NOUVELLES RÈGLES POUR LE TABLEAU DÉFILABLE SUR MOBILE (ajustement du débordement) --- */
+    /* La div .table-responsive est toujours nécessaire pour le scroll horizontal */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto; /* Permet le défilement horizontal */
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Il faudra ENVELOPPER votre <table> dans une nouvelle <div> pour le scroll */
-    .table-responsive {
-        width: 100%; /* Prend toute la largeur disponible */
-        overflow-x: auto; /* Permet le défilement horizontal si le contenu dépasse */
-        -webkit-overflow-scrolling: touch; /* Améliore le défilement sur iOS */
+    th, td {
+        min-width: 120px; /* Légèrement augmenté pour laisser plus de place */
+        width: auto; /* Laisse de la flexibilité */
+        white-space: normal; /* PERMET AU TEXTE DE PASSER À LA LIGNE */
+        overflow: visible; /* PERMET AU CONTENU D'ÊTRE ENTIÈREMENT VISIBLE DANS LA CELLULE */
+        text-overflow: clip; /* Retire les points de suspension */
+        word-break: break-word; /* Casse les mots très longs si nécessaire */
     }
     /* --- FIN DES NOUVELLES RÈGLES MOBILE --- */
 }
