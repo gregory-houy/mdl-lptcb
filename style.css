@@ -156,17 +156,17 @@ h1, h2 {
 table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Par défaut, pour les grands écrans */
+    table-layout: fixed; /* Par défaut, pour les grands écrans, force les colonnes fixes */
 }
 
 th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: left;
-    width: 33.33%; /* Par défaut, pour les grands écrans */
+    width: 33.33%; /* Par défaut, pour les grands écrans, force les colonnes égales */
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; /* Par défaut, pour les grands écrans */
+    white-space: nowrap; /* Par défaut, pour les grands écrans, empêche le retour à la ligne */
 }
 
 th {
@@ -252,18 +252,50 @@ footer {
         font-size: 2em;
     }
 
-    /* --- NOUVELLES RÈGLES POUR LES TABLEAUX SUR MOBILE --- */
-    table {
-        table-layout: auto; /* Permet au tableau d'ajuster les largeurs de colonnes automatiquement */
-        min-width: 100%; /* S'assure que le tableau ne devient pas trop petit */
+    /* --- NOUVELLES RÈGLES POUR LES TABLEAUX SUR MOBILE (TRANSFORMATION) --- */
+    table, thead, tbody, th, td, tr {
+        display: block; /* Chaque élément de tableau devient un bloc */
     }
 
-    th, td {
-        width: auto; /* Les largeurs fixes ne s'appliquent plus */
-        white-space: normal; /* Permet au texte de passer à la ligne */
-        overflow: visible; /* Le contenu n'est plus masqué */
-        text-overflow: clip; /* Retire les points de suspension */
-        word-break: break-word; /* Force le texte à se couper si un mot est trop long */
+    thead tr {
+        position: absolute; /* Cache l'en-tête du tableau sur mobile */
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+        margin-bottom: 15px; /* Espace entre les "cartes" de lignes */
+        border-radius: 8px; /* Bords arrondis pour les "cartes" */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Ombre légère */
+    }
+
+    td {
+        /* Annule les styles PC pour les cellules de données */
+        border: none; /* Plus de bordures inférieures */
+        border-bottom: 1px solid #eee; /* Une fine bordure entre chaque "champ" */
+        position: relative;
+        padding-left: 50%; /* Laisse de la place pour le label */
+        text-align: right; /* Aligne le contenu à droite */
+        white-space: normal; /* Permet le retour à la ligne */
+        word-break: break-word; /* Casse les mots si nécessaire */
+    }
+
+    td:last-child {
+        border-bottom: 0; /* Pas de bordure sur la dernière cellule d'une ligne */
+    }
+
+    td:before {
+        /* Crée un pseudo-élément pour afficher le nom de la colonne comme un label */
+        content: attr(data-label); /* Récupère le label depuis l'attribut data-label de la cellule */
+        position: absolute;
+        left: 6px;
+        width: 45%; /* Espace pour le label */
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
     }
     /* --- FIN DES NOUVELLES RÈGLES MOBILE --- */
 }
