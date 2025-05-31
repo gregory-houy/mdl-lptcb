@@ -166,11 +166,6 @@ th, td {
     border-bottom: 1px solid #ddd;
     text-align: left;
     width: 33.33%; /* Chaque colonne prend un tiers */
-    /* Ces propriétés ne sont plus nécessaires sur PC si le texte peut déborder le viewport avec le scroll */
-    /* Si vous voulez que le texte soit tronqué même sur PC pour des raisons de design, vous pouvez les remettre */
-    /* overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; */
 }
 
 th {
@@ -256,8 +251,7 @@ footer {
         font-size: 2em;
     }
 
-    /* --- NOUVELLES RÈGLES POUR LE TABLEAU DÉFILABLE SUR MOBILE (ajustement du débordement) --- */
-    /* La div .table-responsive est toujours nécessaire pour le scroll horizontal */
+    /* --- RÈGLES POUR LE TABLEAU DÉFILABLE SUR MOBILE (ajustement du débordement) --- */
     .table-responsive {
         width: 100%;
         overflow-x: auto; /* Permet le défilement horizontal */
@@ -265,72 +259,56 @@ footer {
     }
 
     th, td {
-        min-width: 120px; /* Légèrement augmenté pour laisser plus de place */
+        min-width: 120px; /* Largeur minimale pour éviter une trop grande compression */
         width: auto; /* Laisse de la flexibilité */
-        white-space: normal; /* PERMET AU TEXTE DE PASSER À LA LIGNE */
-        overflow: visible; /* PERMET AU CONTENU D'ÊTRE ENTIÈREMENT VISIBLE DANS LA CELLULE */
+        white-space: normal; /* Permet au texte de passer à la ligne */
+        overflow: visible; /* Permet au contenu d'être entièrement visible dans la cellule */
         text-overflow: clip; /* Retire les points de suspension */
         word-break: break-word; /* Casse les mots très longs si nécessaire */
     }
-    /* --- FIN DES NOUVELLES RÈGLES MOBILE --- */
+    /* --- FIN DES RÈGLES MOBILE --- */
 }
 
 /* ----------------------------------------------------- */
-/* --- Effets de survol (HOVER) UNIQUEMENT pour PC --- */
-/* ----------------------------------------------------- */
+/* --- Suppression des effets de survol pour les personnes du trombinoscope --- */
+/* Le bloc @media (hover: hover) et les styles :hover pour .person-card sont supprimés */
 
-@media (hover: hover) and (pointer: fine) {
-    /* Styles de base pour les éléments du trombinoscope (si non déjà définis globalement) */
-    /* Assurez-vous d'avoir des classes comme '.person-card' sur les éléments de votre trombinoscope */
-    .person-card {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 15px;
-        margin: 10px; /* Ou ajustez votre espacement */
-        text-align: center;
-        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transitions douces */
-        cursor: pointer; /* Indique que l'élément est interactif */
-    }
-
-    .person-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 50%; /* Si l'image est ronde */
-        margin-bottom: 10px;
-        transition: border 0.3s ease;
-    }
-
-    .person-card h3 {
-        font-size: 1.2em;
-        margin-bottom: 5px;
-        color: #333;
-        transition: color 0.3s ease;
-    }
-
-    .person-card p {
-        font-size: 0.9em;
-        color: #666;
-    }
-
-    /* Styles de survol réels qui ne s'appliqueront qu'aux appareils PC */
-    .person-card:hover {
-        background-color: #e6f7ff; /* Un bleu très clair, ou la couleur de fond désirée */
-        transform: scale(1.03); /* Agrandissement léger (ajustez 1.05 si vous voulez plus grand) */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée */
-    }
-
-    .person-card:hover h3 {
-        color: #007bff; /* Changement de couleur du nom au survol */
-    }
-
-    .person-card:hover img {
-        border: 2px solid #007bff; /* Ajout d'une bordure à l'image au survol */
-    }
+/* Styles de base pour les éléments du trombinoscope (si non déjà définis globalement) */
+/* Si ces styles étaient définis dans le bloc @media précédent, ils doivent être ici pour s'appliquer toujours. */
+.person-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px; /* Ou ajustez votre espacement */
+    text-align: center;
+    /* Supprimez les transitions si elles étaient liées uniquement au hover */
+    /* transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; */
 }
 
-/* ----------------------------------------------------- */
-/* --- Fin des effets de survol pour PC seulement --- */
+.person-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%; /* Si l'image est ronde */
+    margin-bottom: 10px;
+    /* Supprimez les transitions si elles étaient liées uniquement au hover */
+    /* transition: border 0.3s ease; */
+}
+
+.person-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #333;
+    /* Supprimez les transitions si elles étaient liées uniquement au hover */
+    /* transition: color 0.3s ease; */
+}
+
+.person-card p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Les règles :hover associées à .person-card ont été complètement supprimées. */
 /* ----------------------------------------------------- */
 
 .mdl-ouverte{
