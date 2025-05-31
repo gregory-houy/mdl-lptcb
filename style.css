@@ -153,20 +153,24 @@ h1, h2 {
     background-color: #fff;
 }
 
+/* IMPORTANT: Enveloppez le tableau dans une div pour le rendre défilable */
+/* Le tableau lui-même conserve ses styles pour les grandes largeurs */
 table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Par défaut, pour les grands écrans, force les colonnes fixes */
+    table-layout: fixed; /* Force les colonnes égales */
 }
 
 th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: left;
-    width: 33.33%; /* Par défaut, pour les grands écrans, force les colonnes égales */
-    overflow: hidden;
+    width: 33.33%; /* Chaque colonne prend un tiers */
+    /* Ces propriétés ne sont plus nécessaires sur PC si le texte peut déborder le viewport avec le scroll */
+    /* Si vous voulez que le texte soit tronqué même sur PC pour des raisons de design, vous pouvez les remettre */
+    /* overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; /* Par défaut, pour les grands écrans, empêche le retour à la ligne */
+    white-space: nowrap; */
 }
 
 th {
@@ -252,50 +256,21 @@ footer {
         font-size: 2em;
     }
 
-    /* --- NOUVELLES RÈGLES POUR LES TABLEAUX SUR MOBILE (TRANSFORMATION) --- */
-    table, thead, tbody, th, td, tr {
-        display: block; /* Chaque élément de tableau devient un bloc */
+    /* --- NOUVELLES RÈGLES POUR LE TABLEAU DÉFILABLE SUR MOBILE --- */
+    /* Nous allons réintroduire une largeur minimale pour les cellules */
+    th, td {
+        min-width: 100px; /* Une largeur minimale raisonnable pour que le texte ne soit pas trop compressé */
+        width: auto; /* Permet aux colonnes de grandir au-delà de 33.33% si nécessaire pour le scroll */
+        white-space: nowrap; /* Garde le texte sur une seule ligne (nécessaire pour le scroll) */
+        overflow: hidden; /* Cache le débordement dans la cellule elle-même */
+        text-overflow: ellipsis; /* Affiche les points de suspension si le texte est coupé DANS la cellule */
     }
 
-    thead tr {
-        position: absolute; /* Cache l'en-tête du tableau sur mobile */
-        top: -9999px;
-        left: -9999px;
-    }
-
-    tr {
-        border: 1px solid #ccc;
-        margin-bottom: 15px; /* Espace entre les "cartes" de lignes */
-        border-radius: 8px; /* Bords arrondis pour les "cartes" */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Ombre légère */
-    }
-
-    td {
-        /* Annule les styles PC pour les cellules de données */
-        border: none; /* Plus de bordures inférieures */
-        border-bottom: 1px solid #eee; /* Une fine bordure entre chaque "champ" */
-        position: relative;
-        padding-left: 50%; /* Laisse de la place pour le label */
-        text-align: right; /* Aligne le contenu à droite */
-        white-space: normal; /* Permet le retour à la ligne */
-        word-break: break-word; /* Casse les mots si nécessaire */
-    }
-
-    td:last-child {
-        border-bottom: 0; /* Pas de bordure sur la dernière cellule d'une ligne */
-    }
-
-    td:before {
-        /* Crée un pseudo-élément pour afficher le nom de la colonne comme un label */
-        content: attr(data-label); /* Récupère le label depuis l'attribut data-label de la cellule */
-        position: absolute;
-        left: 6px;
-        width: 45%; /* Espace pour le label */
-        padding-right: 10px;
-        white-space: nowrap;
-        text-align: left;
-        font-weight: bold;
-        color: #555;
+    /* Il faudra ENVELOPPER votre <table> dans une nouvelle <div> pour le scroll */
+    .table-responsive {
+        width: 100%; /* Prend toute la largeur disponible */
+        overflow-x: auto; /* Permet le défilement horizontal si le contenu dépasse */
+        -webkit-overflow-scrolling: touch; /* Améliore le défilement sur iOS */
     }
     /* --- FIN DES NOUVELLES RÈGLES MOBILE --- */
 }
