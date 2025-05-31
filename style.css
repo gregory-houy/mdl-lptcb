@@ -156,21 +156,17 @@ h1, h2 {
 table {
     width: 100%;
     border-collapse: collapse;
-    /* --- NOUVELLE RÈGLE CLÉ --- */
-    table-layout: fixed; /* Force le navigateur à ignorer le contenu pour la largeur */
-    /* --- FIN DE LA NOUVELLE RÈGLE CLÉ --- */
+    table-layout: fixed; /* Par défaut, pour les grands écrans */
 }
 
 th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: left;
-    /* --- RÉGLAGES POUR L'ÉGALITÉ DES COLONNES --- */
-    width: 33.33%; /* Chaque colonne prendra un tiers de la largeur du tableau */
-    overflow: hidden; /* Masque le contenu qui dépasse */
-    text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est coupé */
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-    /* --- FIN DES RÉGLAGES --- */
+    width: 33.33%; /* Par défaut, pour les grands écrans */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Par défaut, pour les grands écrans */
 }
 
 th {
@@ -178,67 +174,46 @@ th {
     font-weight: bold;
 }
 
-/* Les anciennes règles pour first-child ne sont plus nécessaires avec table-layout: fixed et width: 33.33% */
-/*
-table th:first-child {
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-table td:first-child {
-    width: 150px;
-    min-width: 150px;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-*/
-
 footer {
     text-align: center;
-    padding: 0.3em 0; /* Réduction supplémentaire du padding vertical */
+    padding: 0.3em 0;
     background-color: #333;
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
-    font-size: 0.7em; /* Réduction supplémentaire de la taille de la police */
+    font-size: 0.7em;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
     .logo-container {
         display: flex;
-        flex-direction: row; /* Afficher les logos en ligne sur mobile */
-        justify-content: center; /* Centrer les logos sur mobile */
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
         margin-bottom: 15px;
     }
 
     .logo-container img {
-        max-width: 150px; /* Agrandissement de la taille maximale sur mobile */
-        margin: 0 10px; /* Augmentation de l'espacement sur mobile */
+        max-width: 150px;
+        margin: 0 10px;
     }
 
     .nav-links {
-        display: none; /* Cacher la navigation par défaut sur les petits écrans */
+        display: none;
         flex-direction: column;
-        background-color: #333; /* Fond du menu déroulant */
+        background-color: #333;
         position: absolute;
-        top: 60px; /* Ajuster en fonction de la hauteur de votre barre de navigation */
+        top: 60px;
         left: 0;
         width: 100%;
         text-align: center;
-        z-index: 10; /* Pour s'assurer qu'il est au-dessus des autres éléments */
+        z-index: 10;
     }
 
     .nav-links.open {
-        display: flex; /* Afficher le menu quand la classe 'open' est ajoutée */
+        display: flex;
     }
 
     .nav-links li {
@@ -246,10 +221,9 @@ footer {
     }
 
     .hamburger-menu {
-        display: flex; /* Afficher le bouton hamburger sur les petits écrans */
+        display: flex;
     }
 
-    /* Animation du bouton hamburger lors de l'ouverture */
     .hamburger-menu.open span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
     }
@@ -262,21 +236,36 @@ footer {
         transform: translateY(-9px) rotate(-45deg);
     }
 
-    nav ul { /* Suppression des styles flex pour la navigation principale sur petit écran */
+    nav ul {
         display: block;
     }
 
     .login-button {
-        margin-top: 10px; /* Ajuster la position du bouton de connexion */
+        margin-top: 10px;
     }
 
     main {
-        text-align: center; /* S'assurer que le texte reste centré */
+        text-align: center;
     }
 
     .hero h1 {
-        font-size: 2em; /* Ajuster la taille du titre sur mobile */
+        font-size: 2em;
     }
+
+    /* --- NOUVELLES RÈGLES POUR LES TABLEAUX SUR MOBILE --- */
+    table {
+        table-layout: auto; /* Permet au tableau d'ajuster les largeurs de colonnes automatiquement */
+        min-width: 100%; /* S'assure que le tableau ne devient pas trop petit */
+    }
+
+    th, td {
+        width: auto; /* Les largeurs fixes ne s'appliquent plus */
+        white-space: normal; /* Permet au texte de passer à la ligne */
+        overflow: visible; /* Le contenu n'est plus masqué */
+        text-overflow: clip; /* Retire les points de suspension */
+        word-break: break-word; /* Force le texte à se couper si un mot est trop long */
+    }
+    /* --- FIN DES NOUVELLES RÈGLES MOBILE --- */
 }
 
 .mdl-ouverte{
