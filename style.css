@@ -31,6 +31,24 @@ body {
     margin: 0 20px; /* Augmentation de l'espacement sur PC */
 }
 
+/* NOUVEAU : Règles pour les logos en fonction du mode */
+.logo-container .light-mode-logo {
+    display: inline-block; /* Affiché par défaut en mode clair */
+}
+
+.logo-container .dark-mode-logo {
+    display: none; /* Caché par défaut en mode clair */
+}
+
+body.dark-mode .logo-container .light-mode-logo {
+    display: none; /* Cache le logo clair en mode sombre */
+}
+
+body.dark-mode .logo-container .dark-mode-logo {
+    display: inline-block; /* Affiche le logo sombre en mode sombre */
+}
+
+
 header {
     background-color: #333;
     color: white;
@@ -220,7 +238,7 @@ footer {
     transform: scale(1.1);
 }
 
-/* --- NOUVEAU : Styles pour le mode sombre (quand la classe 'dark-mode' est sur le body) --- */
+/* --- Styles pour le mode sombre (quand la classe 'dark-mode' est sur le body) --- */
 body.dark-mode {
     background-color: #1a1a1a; /* Fond très sombre */
     color: #f0f0f0;            /* Texte clair */
