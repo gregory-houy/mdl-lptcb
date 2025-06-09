@@ -17,30 +17,75 @@
                 <span></span>
             </button>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="index.html">Accueil</a></li>
                 <li><a href="journees-thematiques.html">Journées à Thèmes</a></li>
                 <li><a href="actualites.html">Actualités</a></li>
                 <li><a href="trombinoscope.html">Notre équipe</a></li>
                 <li><a href="horaires.html">Horaires d'ouverture</a></li>
                 <li><a href="vente.html">Vente</a></li>
                 <li><a href="prix.html">Prix</a></li>
-                <li><a href="contact.html">Contact</a></li>
                 <li><a href="https://my.matterport.com/show/?m=zjwMjjYAivi" target="_blank">Visite virtuelle</a></li>
-            </ul>
+                <li><a href="contact.html" class="active">Contact</a></li> </ul>
             <a href="https://page-de-connexion-html.vercel.app" class="login-button">Espace membre</a>
         </nav>
     </header>
 
     <main class="container">
-        <h1>Nos Prochaines Journées à Thèmes</h1>
-        <p>Retrouvez ici le calendrier de nos événements et journées spéciales !</p>
+        <section class="contact-section">
+            <h1>Nous Contacter</h1>
+            <p>N'hésitez pas à nous envoyer un message pour toute question, suggestion ou information. Nous serons ravis de vous répondre !</p>
 
-        <section class="event">
-            <h2>[Date] - [Nom de la Journée Thématique]</h2>
-            <p>[Description de l'événement...]</p>
+            <div class="contact-methods">
+                <div class="method-card">
+                    <h3>✉️ Par Email</h3>
+                    <p>Envoyez-nous un courriel à :</p>
+                    <p><a href="mailto:contact@mdl-lycee.fr">contact@mdl-lycee.fr</a></p>
+                    <p class="small-text">Nous répondons généralement sous 24 à 48 heures ouvrées.</p>
+                </div>
+
+                <div class="method-card">
+                    <h3>📍 Rendez-nous visite</h3>
+                    <p>La MDL est située dans le lycée, au bâtiment C, salle 102.</p>
+                    <p>Venez nous voir pendant nos horaires d'ouverture :</p>
+                    <p><a href="horaires.html">Voir les horaires ici</a></p>
+                </div>
+
+                <div class="method-card">
+                    <h3>💬 Sur les réseaux sociaux</h3>
+                    <p>Suivez-nous et envoyez-nous un message sur nos plateformes :</p>
+                    <p>
+                        <a href="URL_FACEBOOK_MDL" target="_blank">Facebook</a> |
+                        <a href="URL_INSTAGRAM_MDL" target="_blank">Instagram</a> |
+                        <a href="URL_AUTRE_RESEAU" target="_blank">Autre réseau</a>
+                    </p>
+                    <p class="small-text">Nous sommes actifs et réactifs !</p>
+                </div>
+            </div>
+
+            <hr> <h2>Envoyez-nous un message direct</h2>
+            <form action="URL_DE_VOTRE_SERVICE_DE_FORMULAIRE" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Votre Nom :</label>
+                    <input type="text" id="name" name="user_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Votre Email :</label>
+                    <input type="email" id="email" name="user_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Sujet :</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Votre Message :</label>
+                    <textarea id="message" name="user_message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Envoyer le message</button>
+            </form>
+            <p class="form-note">Pour que le formulaire fonctionne, vous devrez le connecter à un service d'envoi d'emails (voir les notes ci-dessous).</p>
+
         </section>
-
-        </main>
+    </main>
 
     <footer>
         <p>&copy; 2025 MDL du Lycée Château Blanc</p>
@@ -49,6 +94,7 @@
     <button id="darkModeToggle" class="dark-mode-toggle">
         🌙
     </button>
+
     <script src="script.js"></script>
 </body>
 </html>
