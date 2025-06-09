@@ -31,13 +31,13 @@ body {
     margin: 0 20px; /* Augmentation de l'espacement sur PC */
 }
 
-/* NOUVEAU : Règles pour les logos en fonction du mode */
+/* Règles pour les logos en fonction du mode */
 .logo-container .light-mode-logo {
     display: inline-block; /* Affiché par défaut en mode clair */
 }
 
 .logo-container .dark-mode-logo {
-    display: none; /* Caché par défaut en mode clair */
+    display: none; /* Caché par default en mode clair */
 }
 
 body.dark-mode .logo-container .light-mode-logo {
@@ -212,7 +212,7 @@ footer {
     transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
 }
 
-/* --- NOUVEAU : Styles du bouton de bascule du mode clair/sombre --- */
+/* --- Styles du bouton de bascule du mode clair/sombre --- */
 .dark-mode-toggle {
     position: fixed;
     bottom: 20px;
@@ -241,7 +241,7 @@ footer {
 /* --- Styles pour le mode sombre (quand la classe 'dark-mode' est sur le body) --- */
 body.dark-mode {
     background-color: #1a1a1a; /* Fond très sombre */
-    color: #f0f0f0;            /* Texte clair */
+    color: #f0f0f0;             /* Texte clair */
 }
 
 body.dark-mode .container {
@@ -420,133 +420,9 @@ body.dark-mode .person-card p {
     font-weight: bold;
 }
 
-/* ... Votre code CSS existant ... */
-
-/* Styles pour la section d'informations de contact simple */
-.contact-info-section {
-    text-align: center;
-    padding: 30px 20px;
-}
-
-.contact-info-section h1 {
-    font-size: 2.8em;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.contact-info-section p {
-    font-size: 1.1em;
-    margin-bottom: 30px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.contact-details {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px; /* Espacement entre les blocs d'informations */
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.detail-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 25px;
-    flex: 1 1 280px; /* Base flex pour s'adapter */
-    max-width: 320px; /* Taille maximale pour chaque bloc */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
-    text-align: center; /* Centrer le contenu dans chaque bloc */
-}
-
-.detail-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.detail-item h3 {
-    font-size: 1.6em;
-    margin-bottom: 15px;
-    color: #007bff;
-}
-
-.detail-item p {
-    font-size: 1.1em;
-    color: #555;
-    margin-bottom: 10px;
-    line-height: 1.5;
-}
-
-.detail-item a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.detail-item a:hover {
-    text-decoration: underline;
-}
-
-.note-info {
-    font-size: 1em;
-    color: #777;
-    margin-top: 20px;
-}
-
-
-/* --- NOUVEAU : Adaptation du mode sombre pour la page contact simplifiée --- */
-body.dark-mode .contact-info-section h1 {
-    color: #f0f0f0;
-}
-
-body.dark-mode .contact-info-section p {
-    color: #e0e0e0;
-}
-
-body.dark-mode .detail-item {
-    background-color: #2a2a2a;
-    border-color: #444444;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-}
-
-body.dark-mode .detail-item h3 {
-    color: #88bbff; /* Couleur plus claire pour les titres en mode sombre */
-}
-
-body.dark-mode .detail-item p {
-    color: #cccccc;
-}
-
-body.dark-mode .detail-item a {
-    color: #88bbff;
-}
-
-body.dark-mode .note-info {
-    color: #aaa;
-}
-
-
-/* Responsive design pour les blocs de détail */
-@media (max-width: 768px) {
-    .contact-details {
-        flex-direction: column; /* Empile les blocs sur mobile */
-        align-items: center; /* Centre les blocs */
-    }
-
-    .detail-item {
-        max-width: 90%; /* Prend plus de largeur sur mobile */
-    }
-}
-
-/* ... Votre code CSS existant ... */
-
-/* Styles généraux pour le corps et le conteneur restent les mêmes */
-
-/* NOUVEAU: Section "Héro" spécifique à la page Contact */
+/* ----------------------------------------------------- */
+/* --- Début des styles de la page contact (Nettoyés et optimisés) --- */
+/* Section "Héro" spécifique à la page Contact */
 .contact-page-hero {
     text-align: center;
     padding: 40px 20px;
@@ -570,7 +446,7 @@ body.dark-mode .note-info {
     margin: 0 auto;
 }
 
-/* NOUVEAU: Section des détails de contact sous forme de cartes */
+/* Section des détails de contact sous forme de cartes */
 .contact-details-section {
     display: flex;
     flex-wrap: wrap; /* Permet aux cartes de passer à la ligne */
@@ -588,8 +464,14 @@ body.dark-mode .note-info {
     flex: 1 1 300px; /* Base pour que les cartes soient réactives */
     max-width: 380px; /* Limite la largeur max de chaque carte */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+
+    /* --- AJOUTS POUR CENTRAGE VERTICAL ET HORIZONTAL --- */
+    display: flex;
+    flex-direction: column; /* Empile le contenu verticalement */
+    justify-content: center; /* Centre le contenu verticalement */
+    align-items: center; /* Centre le contenu horizontalement */
+    text-align: center; /* Assure que le texte lui-même est centré horizontalement */
 }
 
 .detail-card:hover {
@@ -601,9 +483,10 @@ body.dark-mode .note-info {
     font-size: 1.8em;
     margin-bottom: 15px;
     color: #007bff; /* Couleur d'accentuation */
-    display: flex;
+    display: flex; /* Garde la flexbox pour l'icône à côté du texte du titre */
     align-items: center;
     justify-content: center;
+    text-align: center; /* S'assure que le titre lui-même est centré */
 }
 
 .detail-card .icon {
@@ -616,6 +499,8 @@ body.dark-mode .note-info {
     color: #666;
     margin-bottom: 10px;
     line-height: 1.6;
+    text-align: center; /* S'assure que les paragraphes sont centrés horizontalement */
+    flex-grow: 1; /* Permet aux paragraphes de prendre l'espace disponible verticalement */
 }
 
 .detail-card .contact-value {
@@ -623,6 +508,7 @@ body.dark-mode .note-info {
     font-weight: bold;
     margin-top: 15px;
     color: #333;
+    text-align: center; /* Centrer les valeurs de contact */
 }
 
 .detail-card a {
@@ -636,7 +522,7 @@ body.dark-mode .note-info {
     color: #0056b3;
 }
 
-/* NOUVEAU: Section d'informations additionnelles */
+/* Section d'informations additionnelles */
 .additional-info-section {
     text-align: center;
     padding: 30px 20px;
@@ -660,7 +546,7 @@ body.dark-mode .note-info {
     margin: 0 auto 15px auto;
 }
 
-/* --- NOUVEAU : Adaptation au mode sombre pour la page Contact --- */
+/* Adaptation au mode sombre pour la page Contact */
 
 body.dark-mode .contact-page-hero {
     background-color: #222222;
@@ -715,7 +601,7 @@ body.dark-mode .additional-info-section p {
     color: #cccccc;
 }
 
-/* Responsive design pour les cartes (peut déjà être géré par .detail-card flex) */
+/* Responsive design pour les cartes */
 @media (max-width: 768px) {
     .contact-details-section {
         flex-direction: column; /* Empile les cartes sur petits écrans */
@@ -733,3 +619,5 @@ body.dark-mode .additional-info-section p {
         font-size: 1em;
     }
 }
+/* --- Fin des styles de la page contact --- */
+/* ----------------------------------------------------- */
