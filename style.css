@@ -450,7 +450,7 @@ body.dark-mode .person-card p {
 .contact-details-section {
     display: flex;
     flex-wrap: wrap; /* Permet aux cartes de passer à la ligne */
-    justify-content: center; /* **C'EST ICI LA CLÉ** : Centre les cartes horizontalement */
+    justify-content: center; /* Centre les cartes horizontalement sur les grands écrans */
     gap: 30px; /* Espacement entre les cartes */
     margin-bottom: 40px;
     padding: 0 20px; /* Petit padding pour éviter de coller les bords */
@@ -605,11 +605,15 @@ body.dark-mode .additional-info-section p {
 @media (max-width: 768px) {
     .contact-details-section {
         flex-direction: column; /* Empile les cartes sur petits écrans */
-        align-items: center; /* **MODIFICATION ICI** : Centre les cartes individuellement quand elles sont empilées */
+        /* C'est ici que l'alignement des BOÎTES (les items Flex) se fait */
+        align-items: center;
     }
 
     .detail-card {
         max-width: 90%; /* Les cartes prennent plus de largeur sur mobile */
+        /* Supprimez les marges auto ici, car align-items: center sur le parent s'en charge */
+        /* margin-left: auto; */
+        /* margin-right: auto; */
     }
 
     .contact-page-hero h1 {
