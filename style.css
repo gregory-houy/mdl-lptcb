@@ -422,19 +422,19 @@ body.dark-mode .person-card p {
 
 /* ... Votre code CSS existant ... */
 
-/* Styles pour la section de contact */
-.contact-section {
+/* Styles pour la section d'informations de contact simple */
+.contact-info-section {
     text-align: center;
     padding: 30px 20px;
 }
 
-.contact-section h1 {
+.contact-info-section h1 {
     font-size: 2.8em;
     margin-bottom: 20px;
     color: #333;
 }
 
-.contact-section p {
+.contact-info-section p {
     font-size: 1.1em;
     margin-bottom: 30px;
     max-width: 800px;
@@ -442,199 +442,102 @@ body.dark-mode .person-card p {
     margin-right: auto;
 }
 
-/* Styles pour les méthodes de contact (cartes) */
-.contact-methods {
+.contact-details {
     display: flex;
-    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne sur petits écrans */
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Espace entre les cartes */
+    gap: 25px; /* Espacement entre les blocs d'informations */
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
-.method-card {
+.detail-item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 25px;
-    flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis: s'adapte mais min 300px */
-    max-width: 350px;
+    flex: 1 1 280px; /* Base flex pour s'adapter */
+    max-width: 320px; /* Taille maximale pour chaque bloc */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+    text-align: center; /* Centrer le contenu dans chaque bloc */
 }
 
-.method-card:hover {
+.detail-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-.method-card h3 {
+.detail-item h3 {
     font-size: 1.6em;
     margin-bottom: 15px;
-    color: #007bff; /* Couleur d'accentuation */
+    color: #007bff;
 }
 
-.method-card p {
-    font-size: 1em;
+.detail-item p {
+    font-size: 1.1em;
     color: #555;
     margin-bottom: 10px;
     line-height: 1.5;
 }
 
-.method-card a {
+.detail-item a {
     color: #007bff;
     text-decoration: none;
     font-weight: bold;
 }
 
-.method-card a:hover {
+.detail-item a:hover {
     text-decoration: underline;
 }
 
-.small-text {
-    font-size: 0.85em;
-    color: #777;
-    margin-top: 15px;
-}
-
-/* Styles pour le formulaire de contact */
-.contact-form {
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 30px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    text-align: left; /* Aligner le texte du formulaire à gauche */
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group textarea {
-    width: calc(100% - 22px); /* Prend toute la largeur moins le padding et bordure */
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.note-info {
     font-size: 1em;
-    box-sizing: border-box; /* Inclut padding et bordure dans la largeur totale */
-    transition: border-color 0.3s ease;
-}
-
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group textarea:focus {
-    border-color: #007bff;
-    outline: none; /* Supprime l'outline par défaut du navigateur */
-}
-
-.submit-button {
-    background-color: #28a745; /* Couleur verte pour le bouton d'envoi */
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.submit-button:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
-}
-
-.form-note {
-    font-size: 0.9em;
-    color: #888;
+    color: #777;
     margin-top: 20px;
-    text-align: center;
 }
 
-/* --- NOUVEAU : Adaptation du mode sombre pour la page contact --- */
-body.dark-mode .contact-section h1,
-body.dark-mode .contact-section h2,
-body.dark-mode .form-group label {
+
+/* --- NOUVEAU : Adaptation du mode sombre pour la page contact simplifiée --- */
+body.dark-mode .contact-info-section h1 {
     color: #f0f0f0;
 }
 
-body.dark-mode .contact-section p,
-body.dark-mode .method-card p,
-body.dark-mode .method-card a {
+body.dark-mode .contact-info-section p {
     color: #e0e0e0;
 }
 
-body.dark-mode .method-card {
+body.dark-mode .detail-item {
     background-color: #2a2a2a;
     border-color: #444444;
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 
-body.dark-mode .method-card h3 {
+body.dark-mode .detail-item h3 {
     color: #88bbff; /* Couleur plus claire pour les titres en mode sombre */
 }
 
-body.dark-mode .method-card a {
+body.dark-mode .detail-item p {
+    color: #cccccc;
+}
+
+body.dark-mode .detail-item a {
     color: #88bbff;
 }
 
-body.dark-mode .contact-form {
-    background-color: #2a2a2a;
-    border-color: #444444;
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-}
-
-body.dark-mode .form-group input[type="text"],
-body.dark-mode .form-group input[type="email"],
-body.dark-mode .form-group textarea {
-    background-color: #3a3a3a;
-    border-color: #555555;
-    color: #f0f0f0;
-}
-
-body.dark-mode .form-group input[type="text"]:focus,
-body.dark-mode .form-group input[type="email"]:focus,
-body.dark-mode .form-group textarea:focus {
-    border-color: #88bbff;
-}
-
-body.dark-mode .submit-button {
-    background-color: #218838; /* Vert un peu plus sombre en mode sombre */
-}
-
-body.dark-mode .submit-button:hover {
-    background-color: #1c7430;
-}
-
-body.dark-mode .form-note {
+body.dark-mode .note-info {
     color: #aaa;
 }
 
 
-/* Media queries pour le responsive (si non déjà dans votre fichier) */
+/* Responsive design pour les blocs de détail */
 @media (max-width: 768px) {
-    .contact-methods {
-        flex-direction: column; /* Les cartes s'empilent sur mobile */
-        align-items: center; /* Centrer les cartes empilées */
+    .contact-details {
+        flex-direction: column; /* Empile les blocs sur mobile */
+        align-items: center; /* Centre les blocs */
     }
 
-    .method-card {
+    .detail-item {
         max-width: 90%; /* Prend plus de largeur sur mobile */
-    }
-
-    .contact-form {
-        padding: 20px;
-        max-width: 95%;
     }
 }
