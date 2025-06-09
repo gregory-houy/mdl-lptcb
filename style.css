@@ -450,7 +450,7 @@ body.dark-mode .person-card p {
 .contact-details-section {
     display: flex;
     flex-wrap: wrap; /* Permet aux cartes de passer à la ligne */
-    justify-content: center;
+    justify-content: center; /* **C'EST ICI LA CLÉ** : Centre les cartes horizontalement */
     gap: 30px; /* Espacement entre les cartes */
     margin-bottom: 40px;
     padding: 0 20px; /* Petit padding pour éviter de coller les bords */
@@ -466,7 +466,7 @@ body.dark-mode .person-card p {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 
-    /* --- AJOUTS POUR CENTRAGE VERTICAL ET HORIZONTAL --- */
+    /* --- AJOUTS POUR CENTRAGE VERTICAL ET HORIZONTAL DU CONTENU DE LA CARTE --- */
     display: flex;
     flex-direction: column; /* Empile le contenu verticalement */
     justify-content: center; /* Centre le contenu verticalement */
@@ -601,11 +601,11 @@ body.dark-mode .additional-info-section p {
     color: #cccccc;
 }
 
-/* Responsive design pour les cartes */
+/* Responsive design pour les cartes (peut déjà être géré par .detail-card flex) */
 @media (max-width: 768px) {
     .contact-details-section {
         flex-direction: column; /* Empile les cartes sur petits écrans */
-        align-items: center; /* Centre les cartes */
+        align-items: center; /* **MODIFICATION ICI** : Centre les cartes individuellement quand elles sont empilées */
     }
 
     .detail-card {
