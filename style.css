@@ -169,7 +169,7 @@ h1, h2 {
     transition: background-color 0.3s ease; /* Transition pour le mode sombre */
 }
 
-.event, .news-item, .pricing, .opening-hours {
+.event, .pricing, .opening-hours { /* news-item est retiré d'ici pour avoir des styles spécifiques plus bas */
     margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #ddd;
@@ -280,9 +280,8 @@ body.dark-mode .history-section {
 }
 
 body.dark-mode .event,
-body.dark-mode .news-item,
 body.dark-mode .pricing,
-body.dark-mode .opening-hours {
+body.dark-mode .opening-hours { /* news-item est retiré d'ici */
     background-color: #333333;
     border-color: #444444;
 }
@@ -624,4 +623,105 @@ body.dark-mode .additional-info-section p {
     }
 }
 /* --- Fin des styles de la page contact --- */
+/* ----------------------------------------------------- */
+
+/* ----------------------------------------------------- */
+/* --- NOUVEAUX STYLES POUR LES ACTUALITÉS (MODIFIÉS POUR IMAGE À GAUCHE) --- */
+
+.news-item {
+    display: flex; /* Fait de l'actualité un conteneur Flex */
+    flex-direction: column; /* Empile les éléments verticalement par défaut (mobile) */
+    align-items: center; /* Centre horizontalement sur mobile */
+    text-align: center; /* Centre le texte sur mobile */
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.news-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 15px; /* Un peu d'espace sous l'image sur mobile */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.news-item h2 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.news-item p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* Conteneur pour le titre et la description */
+.news-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne le contenu à gauche */
+    text-align: left; /* Aligne le texte à gauche */
+}
+
+/* Ajustements responsives pour les actualités (image à gauche sur PC) */
+@media (min-width: 769px) {
+    .news-item {
+        flex-direction: row; /* Image et contenu côte à côte sur PC */
+        align-items: flex-start; /* Aligne l'image et le contenu en haut */
+        text-align: left; /* Aligne le texte à gauche sur PC */
+    }
+
+    .news-image {
+        max-width: 200px; /* Taille de l'image à gauche */
+        min-width: 200px;
+        margin-right: 20px; /* Espace entre l'image et le contenu */
+        margin-bottom: 0; /* Supprime la marge du bas sur PC */
+    }
+
+    /* Le contenu prend l'espace restant */
+    .news-content {
+        flex-grow: 1;
+    }
+
+    .news-item h2 {
+        margin-top: 0; /* Supprime la marge du haut du titre sur PC */
+    }
+}
+
+/* Ajustements pour le mode sombre des actualités */
+body.dark-mode .news-item {
+    background-color: #2a2a2a;
+    border-color: #444444;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .news-item:hover {
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .news-item h2 {
+    color: #88bbff;
+}
+
+body.dark-mode .news-item p {
+    color: #cccccc;
+}
+
+body.dark-mode .news-image {
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+}
+
+/* --- FIN DES NOUVEAUX STYLES POUR LES ACTUALITÉS (MODIFIÉS POUR IMAGE À GAUCHE) --- */
 /* ----------------------------------------------------- */
