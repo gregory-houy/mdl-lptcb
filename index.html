@@ -6,6 +6,19 @@
     <title>Accueil - MDL du Lycée</title>
     <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
+    <style>
+        /* Ajout de ces styles pour que le lien dans h1 ressemble au titre */
+        h1 a {
+            color: inherit; /* Le lien hérite de la couleur du titre h1 */
+            text-decoration: none; /* Supprime le soulignement du lien */
+        }
+
+        h1 a:hover,
+        h1 a:focus {
+            text-decoration: underline; /* Ajoute un soulignement au survol ou à la sélection */
+            color: #0066cc; /* Change de couleur au survol pour un meilleur feedback */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -37,7 +50,7 @@
                 <img src="images/logos/lycee-sombre.png" alt="Logo Lycée Sombre" class="dark-mode-logo">
                 <img src="images/logos/mdl.png" alt="Logo MDL">
             </div>
-            <h1>Bienvenue sur le site de la Maison des Lycéens du<br><a href="https://www.lycee-chateaublanc.net/">Lycée Château Blanc !</a></h1>
+            <h1>Bienvenue sur le site de la Maison des Lycéens du<br><a href="https://www.lycee-chateaublanc.net/">Lycée Château Blanc</a> !</h1>
             <p>Votre espace d'informations et d'échanges au sein de la Maison Des Lycéens.</p>
         </section>
 
