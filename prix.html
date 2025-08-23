@@ -7,6 +7,26 @@
     <title>Prix - MDL du Lycée</title>
     <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
+    <style>
+        .cercle {
+            width: 60px;
+            height: 60px;
+            background-color: orange;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .cercle:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -34,123 +54,126 @@
     </header>
 
     <main class="container">
-    <h1>Les Prix</h1>
-    <br>
-    <p>Pour bénéficier des prix adhérents, vous  pouvez vous inscrire en cliquand sur le lien ci-dessous :<br><a href="http://adhesion-mdl-lptcb.vercel.app/" style="color: #FF9200; text-decoration: none;"><b>Bénéficier des prix adhérents</b></a></p>
-    <br>
-    <section>
-        <h2>Boissons</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prix Adhérent</th>
-                    <th>Prix Non-Adhérent</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Jus multifruit</td>
-                    <td>Non défini</td>
-                    <td>Non défini</td>
-                </tr>
-                <tr>
-                    <td>Jus d'orange</td>
-                    <td>Non défini</td>
-                    <td>Non défini</td>
-                </tr>
-                <tr>
-                    <td>Eau (bouteille de 50 cl)</td>
-                    <td>Non défini</td>
-                    <td>Non défini</td>
-                </tr>
+        <h1>Les Prix</h1>
+        <br>
+        <p>Pour bénéficier des prix adhérents, vous  pouvez vous inscrire en cliquand sur le lien ci-dessous :<br><a href="http://adhesion-mdl-lptcb.vercel.app/" style="color: #FF9200; text-decoration: none;"><b>Bénéficier des prix adhérents</b></a></p>
+        <br>
+
+        <section>
+            <h2>Boissons</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix Adhérent</th>
+                        <th>Prix Non-Adhérent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jus multifruit</td>
+                        <td>Non défini</td>
+                        <td>Non défini</td>
+                    </tr>
+                    <tr>
+                        <td>Jus d'orange</td>
+                        <td>Non défini</td>
+                        <td>Non défini</td>
+                    </tr>
+                    <tr>
+                        <td>Eau (bouteille de 50 cl)</td>
+                        <td>Non défini</td>
+                        <td>Non défini</td>
+                    </tr>
                 </tbody>
-        </table>
-    </section>
+            </table>
+        </section>
 
-    <section>
-        <h2>Gâteaux</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prix Adhérent</th>
-                    <th>Prix Non-Adhérent</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Madeleine choco</td>
-                    <td>0,30 €</td>
-                    <td>0,50 €</td>
-                </tr>
-                <tr>
-                    <td>Moelleux choco</td>
-                    <td>0,40 €</td>
-                    <td>0,60 €</td>
-                </tr>
-                <tr>
-                    <td>Bijou caramel</td>
-                    <td>0,40 €</td>
-                    <td>0,60 €</td>
-                </tr>
-                <tr>
-                    <td>Cigarette choco</td>
-                    <td>0,30 €</td>
-                    <td>0,50 €</td>
-                </tr>
-                <tr>
-                    <td>Sablé vienois</td>
-                    <td>0,30 €</td>
-                    <td>0,50 €</td>
-                </tr>
-                <tr>
-                    <td>Génois choco</td>
-                    <td>0,40 €</td>
-                    <td>0,60 €</td>
-                </tr>
+        <section>
+            <h2>Gâteaux</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix Adhérent</th>
+                        <th>Prix Non-Adhérent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Madeleine choco</td>
+                        <td>0,30 €</td>
+                        <td>0,50 €</td>
+                    </tr>
+                    <tr>
+                        <td>Moelleux choco</td>
+                        <td>0,40 €</td>
+                        <td>0,60 €</td>
+                    </tr>
+                    <tr>
+                        <td>Bijou caramel</td>
+                        <td>0,40 €</td>
+                        <td>0,60 €</td>
+                    </tr>
+                    <tr>
+                        <td>Cigarette choco</td>
+                        <td>0,30 €</td>
+                        <td>0,50 €</td>
+                    </tr>
+                    <tr>
+                        <td>Sablé vienois</td>
+                        <td>0,30 €</td>
+                        <td>0,50 €</td>
+                    </tr>
+                    <tr>
+                        <td>Génois choco</td>
+                        <td>0,40 €</td>
+                        <td>0,60 €</td>
+                    </tr>
+                    <tr>
+                        <td>Madeleine nature</td>
+                        <td>0,30 €</td>
+                        <td>0,50 €</td>
+                    </tr>
+                    <tr>
+                        <td>Financier aux amandes</td>
+                        <td>0,40 €</td>
+                        <td>0,60 €</td>
+                    </tr>
+                    <tr>
+                        <td>Marbré</td>
+                        <td>0,40 €</td>
+                        <td>0,60 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-                <tr>
-                    <td>Madeleine nature</td>
-                    <td>0,30 €</td>
-                    <td>0,50 €</td>
-                </tr>
-                <tr>
-                    <td>Financier aux amandes</td>
-                    <td>0,40 €</td>
-                    <td>0,60 €</td>
-                </tr>
-                <tr>
-                    <td>Marbré</td>
-                    <td>0,40 €</td>
-                    <td>0,60 €</td>
-                </tr>
+        <section>
+            <h2>Jeux</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prix Adhérent</th>
+                        <th>Prix Non-Adhérent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tous les jeux</td>
+                        <td>Gratuit</td>
+                        <td>0.20 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-            </tbody>
-        </table>
-    </section>
+        <br>
 
-    <section>
-        <h2>Jeux</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prix Adhérent</th>
-                    <th>Prix Non-Adhérent</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Tous les jeux</td>
-                    <td>Gratuit</td>
-                    <td>0.20 €</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <br>
-</main>
+        <!-- Cercle orange avec > -->
+        <div class="cercle">&gt;</div>
+    </main>
 
     <footer>
         <p>&copy; 2025 MDL du Lycée Château Blanc</p>
