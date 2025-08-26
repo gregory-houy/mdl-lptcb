@@ -7,6 +7,7 @@
     <title>Journées à Thèmes - MDL du Lycée</title>
     <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <header>
@@ -37,12 +38,8 @@
         <h1>Nos Prochaines Journées à Thèmes</h1>
         <p>Retrouvez ici le calendrier de nos événements et journées spéciales !</p>
 
-        <section class="event">
-            <h2>[Date] - [Nom de la Journée Thématique]</h2>
-            <p>[Description de l'événement...]</p>
-        </section>
-
-        </main>
+        <div id="events-container"></div>
+    </main>
 
     <footer>
         <p>&copy; 2025 MDL du Lycée Château Blanc</p>
@@ -52,5 +49,41 @@
         🌙
     </button>
     <script src="script.js"></script>
+    <script>
+        // Remplacez ces valeurs par vos propres clés Supabase
+        const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
+        
+        const supabase = window.supabase.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        async function chargerEvenements() {
+            const { data: journees, error } = await supabase
+                .from("journees_thematiques")
+                .select("*")
+                .order("date_journee_thematique", { ascending: false });
+
+            if (error) {
+                console.error("Erreur de chargement des événements :", error);
+                return;
+            }
+
+            const container = document.getElementById("events-container");
+            container.innerHTML = ""; // Vide le conteneur
+
+            journees.forEach(journee => {
+                const eventCard = document.createElement("section");
+                eventCard.classList.add("event");
+                
+                eventCard.innerHTML = `
+                    <h2>${new Date(journee.date_journee_thematique).toLocaleDateString()} - ${journee.titre}</h2>
+                    <img src="${journee.url_image}" alt="${journee.titre}" style="max-width:100%; height:auto; border-radius:8px; margin-top:10px;">
+                    <p>${journee.texte_descriptif}</p>
+                `;
+                container.appendChild(eventCard);
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", chargerEvenements);
+    </script>
 </body>
 </html>
