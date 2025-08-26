@@ -9,12 +9,28 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
+        /* Définition des variables de couleur pour le mode clair */
+        :root {
+            --card-bg: #fff;
+            --text-color: #333;
+            --meta-color: #777;
+            --border-color: #eee;
+        }
+
+        /* Redéfinition des variables de couleur pour le mode sombre */
+        body.dark-mode {
+            --card-bg: #2d2d2d;
+            --text-color: #f0f0f0;
+            --meta-color: #aaa;
+            --border-color: #555;
+        }
+
         /* Styles spécifiques pour la page de détail des actualités */
         #actualite_detail {
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: var(--card-bg);
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -29,7 +45,7 @@
         }
 
         #actualite_detail h1 {
-            color: #2b6cb0;
+            color: var(--text-color);
             text-align: center;
             margin-top: 0;
             margin-bottom: 15px;
@@ -38,15 +54,16 @@
         #actualite_detail p {
             line-height: 1.6;
             white-space: pre-wrap;
-            text-align: justify; /* Justifie le texte */
+            text-align: justify;
+            color: var(--text-color);
             margin-bottom: 20px;
         }
 
         .meta-info {
             font-size: 0.9em;
-            color: #777;
+            color: var(--meta-color);
             margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
             text-align: center;
         }
