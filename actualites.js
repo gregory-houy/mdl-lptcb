@@ -1,84 +1,66 @@
 // actualites.js
 
 // 1. Initialisation du client Supabase
-// Remplacez les valeurs suivantes par vos propres clés Supabase
 const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSIsImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
 
-// La ligne corrigée : on utilise window.supabase
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// 2. Fonction pour récupérer les actualités
+// 2. Récupérer les actualités depuis Supabase
 async function fetchActualites() {
-      try {
-            const { data, error } = await supabase
-                  .from('actualites')
-                  .select('*')
-                  .order('date_publication', { ascending: false });
+    try {
+        const { data, error } = await supabase
+            .from('actualites')
+            .select('*')
+            .order('date_publication', { ascending: false });
 
-            if (error) {
-                  throw error;
-            }
-            
-            renderActualites(data);
+        if (error) throw error;
 
-      } catch (error) {
-            console.error('Erreur lors de la récupération des actualités :', error.message);
-            const container = document.querySelector('.container');
-            container.innerHTML = `<p style="color: red; text-align: center;">Impossible de charger les actualités. Veuillez réessayer plus tard.</p>`;
-      }
+        renderActualites(data);
+
+    } catch (error) {
+        console.error('Erreur lors de la récupération des actualités :', error.message);
+        const container = document.querySelector('.container');
+        container.innerHTML = `<p style="color: red; text-align: center;">Impossible de charger les actualités. Veuillez réessayer plus tard.</p>`;
+    }
 }
 
-// 3. Fonction pour afficher les actualités sur la page
+// 3. Afficher les actualités sur la page
 function renderActualites(actualites) {
-      const actualitesContainer = document.querySelector('.container');
+    const actualitesContainer = document.querySelector('.container');
 
-      if (actualites.length === 0) {
-            actualitesContainer.innerHTML += `<p>Aucune actualité n'est disponible pour le moment.</p>`;
-            return;
-      }
+    if (actualites.length === 0) {
+        actualitesContainer.innerHTML += `<p>Aucune actualité n'est disponible pour le moment.</p>`;
+        return;
+    }
 
-      actualites.forEach(actualite => {
-            const article = document.createElement('article');
-            article.className = 'news-item';
+    actualites.forEach(actualite => {
+        const article = document.createElement('article');
+        article.className = 'news-item';
 
-            const img = document.createElement('img');
+        const img = document.createElement('img');
+        img.src = actualite.url_image || 'https://via.placeholder.com/600x400?text=Image+non+disponible'; // URL déjà publique
+        img.alt = actualite.titre;
+        img.className = 'news-image';
 
-            // 🚨 Ligne corrigée et optimisée
-        const bucketName = 'actualites_images';
-        let imageUrl = '';
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'news-content';
 
-        try {
-            const { data } = supabase.storage.from(bucketName).getPublicUrl(actualite.url_image);
-            imageUrl = data.publicUrl;
-        } catch (error) {
-            console.error('Erreur de génération de l\'URL publique :', error.message);
-            // On utilise une image par défaut si l'URL ne peut pas être générée
-            imageUrl = 'https://via.placeholder.com/600x400?text=Image+non+disponible';
-        }
-            
-        img.src = imageUrl;
-            img.alt = actualite.titre;
-            img.className = 'news-image';
+        const date = new Date(actualite.date_publication).toLocaleDateString('fr-FR');
+        
+        const titleH2 = document.createElement('h2');
+        titleH2.textContent = `${date} - ${actualite.titre}`;
 
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'news-content';
+        const descriptionP = document.createElement('p');
+        descriptionP.textContent = actualite.texte_descriptif;
 
-            const date = new Date(actualite.date_publication).toLocaleDateString('fr-FR');
-            
-            const titleH2 = document.createElement('h2');
-            titleH2.textContent = `${date} - ${actualite.titre}`;
+        contentDiv.appendChild(titleH2);
+        contentDiv.appendChild(descriptionP);
+        article.appendChild(img);
+        article.appendChild(contentDiv);
 
-            const descriptionP = document.createElement('p');
-            descriptionP.textContent = actualite.texte_descriptif;
-
-            contentDiv.appendChild(titleH2);
-            contentDiv.appendChild(descriptionP);
-            article.appendChild(img);
-            article.appendChild(contentDiv);
-
-            actualitesContainer.appendChild(article);
-      });
+        actualitesContainer.appendChild(article);
+    });
 }
 
 // 4. Exécution
