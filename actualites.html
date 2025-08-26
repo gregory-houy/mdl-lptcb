@@ -10,6 +10,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
+        /* Variables de couleur pour le mode clair */
+        :root {
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --meta-color: #777;
+        }
+
+        /* Redéfinition des variables pour le mode sombre */
+        body.dark-mode {
+            --card-bg: #2d2d2d;
+            --text-color: #f0f0f0;
+            --meta-color: #aaa;
+        }
+
         /* Style des cartes d'actualités */
         #actualites_container {
             display: grid;
@@ -18,7 +32,7 @@
         }
 
         .actualite_card {
-            background-color: #fff;
+            background-color: var(--card-bg); /* Utilise la variable pour le fond */
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -32,8 +46,8 @@
 
         .actualite_card img {
             width: 100%;
-            height: 200px; /* Taille fixe pour toutes les images */
-            object-fit: cover; /* Recadre l'image pour qu'elle remplisse l'espace */
+            height: 200px;
+            object-fit: cover;
         }
         .actualite_content {
             padding: 15px;
@@ -42,10 +56,11 @@
             margin-top: 0;
             margin-bottom: 5px;
             font-size: 1.2em;
+            color: var(--text-color); /* Utilise la variable pour le titre */
         }
         .actualite_meta {
             font-size: 0.9em;
-            color: #777;
+            color: var(--meta-color); /* Utilise la variable pour le texte méta */
             margin-top: 10px;
             display: flex;
             justify-content: space-between;
