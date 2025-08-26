@@ -43,7 +43,7 @@ function renderActualites(actualites) {
             article.className = 'news-item';
 
             const img = document.createElement('img');
-            
+
             // 🚨 Ligne corrigée : On utilise directement l'URL de la base de données
             img.src = actualite.url_image;
 
@@ -64,7 +64,7 @@ function renderActualites(actualites) {
         // AJOUT DU PARAGRAPHE POUR L'AUTEUR
         const auteurP = document.createElement('p');
         auteurP.className = 'news-author';
-        auteurP.textContent = `Écrit par : ${actualite.auteur || 'Non spécifié'}`;
+        auteurP.textContent = `Publié par : ${actualite.auteur || 'Non spécifié'}`;
 
             contentDiv.appendChild(titleH2);
             contentDiv.appendChild(descriptionP);
