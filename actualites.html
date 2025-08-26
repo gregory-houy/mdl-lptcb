@@ -38,6 +38,8 @@
     <main class="container">
         <h1>Dernières Actualités de la MDL</h1>
         <p>Restez informé de tout ce qui se passe à la Maison Des Lycéens !</p>
+        <div id="actualites_container">
+            </div>
     </main>
 
     <footer>
@@ -49,6 +51,71 @@
     </button>
     
     <script src="script.js"></script>
-    <script src="actualites.js"></script>
+    <script>
+        const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function renderActualites() {
+            const { data, error } = await supabase
+                .from('actualites')
+                .select('*')
+                .order('date_publication', { ascending: false });
+
+            if (error) {
+                console.error('Erreur de chargement des actualités:', error);
+                return;
+            }
+
+            const container = document.getElementById('actualites_container');
+            container.innerHTML = '';
+
+            data.forEach(actualite => {
+                const actualiteDiv = document.createElement('div');
+                actualiteDiv.className = 'actualite_card';
+
+                const datePublication = new Date(actualite.date_publication).toLocaleDateString('fr-FR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                const fullText = actualite.texte_descriptif.replace(/\n/g, '<br>');
+                const truncatedText = fullText.split('<br>').slice(0, 3).join('<br>');
+                const showButton = fullText.split('<br>').length > 3 || fullText.length > 200;
+
+                actualiteDiv.innerHTML = `
+                    <img src="${actualite.url_image}" alt="${actualite.titre}">
+                    <div class="actualite_content">
+                        <h2>${actualite.titre}</h2>
+                        <p id="description_${actualite.id}">${showButton ? truncatedText : fullText}</p>
+                        ${showButton ? `<button class="voir_plus_btn" onclick="toggleText(this, '${actualite.id}')">Voir plus</button>` : ''}
+                        <div class="actualite_meta">
+                            <span>Publié par : ${actualite.auteur}</span>
+                            <span>${datePublication}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(actualiteDiv);
+            });
+        }
+        
+        async function toggleText(button, id) {
+            const { data } = await supabase.from('actualites').select('texte_descriptif').eq('id', id).single();
+            const fullText = data.texte_descriptif.replace(/\n/g, '<br>');
+            const descriptionP = document.getElementById(`description_${id}`);
+
+            if (button.textContent === 'Voir plus') {
+                descriptionP.innerHTML = fullText;
+                button.textContent = 'Voir moins';
+            } else {
+                const shortText = fullText.split('<br>').slice(0, 3).join('<br>');
+                descriptionP.innerHTML = shortText;
+                button.textContent = 'Voir plus';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', renderActualites);
+    </script>
 </body>
 </html>
