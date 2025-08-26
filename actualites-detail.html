@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="rT7FhVtgQ3VDwmpmEIGLUB0xlYUB9ziTsrN9BKJCKbk" />
-    <title>Actualités - MDL du Lycée</title>
+    <title>Détail de l'actualité - MDL du Lycée</title>
     <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
-
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
-        .actualite_card {
+        .detail-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-            cursor: pointer; /* Indique que la carte est cliquable */
         }
-        .actualite_card img {
+        .detail-container img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
-        .actualite_content {
-            padding: 15px;
-        }
-        .actualite_content h2 {
+        .detail-container h1 {
+            color: #2b6cb0;
             margin-top: 0;
-            margin-bottom: 10px;
         }
-        .actualite_meta {
+        .detail-container p {
+            line-height: 1.6;
+            white-space: pre-wrap; /* Maintient les sauts de ligne */
+        }
+        .meta-info {
             font-size: 0.9em;
             color: #777;
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
     </style>
 </head>
@@ -65,9 +68,7 @@
     </header>
 
     <main class="container">
-        <h1>Dernières Actualités de la MDL</h1>
-        <p>Restez informé de tout ce qui se passe à la Maison Des Lycéens !</p>
-        <div id="actualites_container">
+        <div id="actualite_detail" class="detail-container">
             </div>
     </main>
 
@@ -78,56 +79,54 @@
     <button id="darkModeToggle" class="dark-mode-toggle">
         🌙
     </button>
-    
+
     <script src="script.js"></script>
     <script>
         const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        async function renderActualites() {
-            const { data, error } = await supabase
-                .from('actualites')
-                .select('*')
-                .order('date_publication', { ascending: false });
+        async function chargerDetailActualite() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
 
-            if (error) {
-                console.error('Erreur de chargement des actualités:', error);
+            if (!id) {
+                document.getElementById('actualite_detail').innerHTML = '<p>Actualité non trouvée.</p>';
                 return;
             }
 
-            const container = document.getElementById('actualites_container');
-            container.innerHTML = '';
+            const { data, error } = await supabase
+                .from('actualites')
+                .select('*')
+                .eq('id', id)
+                .single();
 
-            data.forEach(actualite => {
-                const actualiteDiv = document.createElement('div');
-                actualiteDiv.className = 'actualite_card';
-                // Ajout d'un écouteur d'événement pour la redirection
-                actualiteDiv.onclick = () => {
-                    window.location.href = `actualite-detail.html?id=${actualite.id}`;
-                };
+            if (error) {
+                console.error("Erreur de chargement de l'actualité:", error);
+                document.getElementById('actualite_detail').innerHTML = '<p>Erreur lors du chargement de l\'actualité.</p>';
+                return;
+            }
 
-                const datePublication = new Date(actualite.date_publication).toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                
-                actualiteDiv.innerHTML = `
-                    <img src="${actualite.url_image}" alt="${actualite.titre}">
-                    <div class="actualite_content">
-                        <h2>${actualite.titre}</h2>
-                        <div class="actualite_meta">
-                            <span>Publié par : ${actualite.auteur}</span>
-                            <span>${datePublication}</span>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(actualiteDiv);
+            const actualite = data;
+            const container = document.getElementById('actualite_detail');
+            const datePublication = new Date(actualite.date_publication).toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
             });
+
+            container.innerHTML = `
+                <img src="${actualite.url_image}" alt="${actualite.titre}">
+                <h1>${actualite.titre}</h1>
+                <div class="meta-info">
+                    <span>Publié par : ${actualite.auteur}</span>
+                    <span> - ${datePublication}</span>
+                </div>
+                <p>${actualite.texte_descriptif.replace(/\n/g, '<br>')}</p>
+            `;
         }
-        
-        document.addEventListener('DOMContentLoaded', renderActualites);
+
+        document.addEventListener('DOMContentLoaded', chargerDetailActualite);
     </script>
 </body>
 </html>
