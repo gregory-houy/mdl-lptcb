@@ -54,7 +54,9 @@
         const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
         
-        const supabase = window.supabase.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        // Correction de l'initialisation du client Supabase
+        const { createClient } = window.supabase;
+        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
         
         async function chargerEvenements() {
             const { data: journees, error } = await supabase
@@ -74,8 +76,10 @@
                 const eventCard = document.createElement("section");
                 eventCard.classList.add("event");
                 
+                const formattedDate = new Date(journee.date_journee_thematique).toLocaleDateString();
+
                 eventCard.innerHTML = `
-                    <h2>${new Date(journee.date_journee_thematique).toLocaleDateString()} - ${journee.titre}</h2>
+                    <h2>${formattedDate} - ${journee.titre}</h2>
                     <img src="${journee.url_image}" alt="${journee.titre}" style="max-width:100%; height:auto; border-radius:8px; margin-top:10px;">
                     <p>${journee.texte_descriptif}</p>
                 `;
