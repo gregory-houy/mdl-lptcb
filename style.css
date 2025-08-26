@@ -61,20 +61,31 @@ header {
 
 nav {
     display: flex;
-    justify-content: space-between; /* Espacement par défaut pour PC */
+    justify-content: space-between;
     align-items: center;
     max-width: 1600px;
     margin: 0 auto;
-    width: 100%; /* Pour que nav prenne toute la largeur du header */
+    width: 100%;
 }
 
-.logo {
+/* NOUVELLE RÈGLE : Conteneur Flex pour les éléments de navigation */
+.nav-container {
+    display: flex;
+    flex-grow: 1; /* Permet au conteneur de prendre l'espace restant */
+    justify-content: center; /* Centre les éléments horizontalement */
+    align-items: center; /* Aligne les éléments verticalement */
+}
+
+/* Ancienne règle .logo devient .logo-link */
+.logo-link {
+    display: flex; /* Permet un meilleur alignement vertical */
+    align-items: center;
     font-size: 1.5em;
     font-weight: bold;
+    height: 40px; /* Aligne le lien sur la hauteur de l'image */
 }
 
-/* Redimensionne le logo dans le header pour les écrans PC */
-.logo img {
+.logo-link img {
     height: 40px;
     width: auto;
 }
@@ -322,9 +333,9 @@ body.dark-mode .person-card p {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    /* NOUVELLE RÈGLE : Réduit la taille du logo sur les téléphones */
-    .logo img {
-        height: 30px; /* Taille réduite */
+    /* Cache le conteneur principal sur mobile pour ne laisser que le hamburger menu */
+    .nav-container {
+        display: none;
     }
     
     .logo-container {
@@ -367,6 +378,8 @@ body.dark-mode .person-card p {
 
     .hamburger-menu {
         display: flex;
+        position: absolute; /* Positionne le hamburger menu dans le coin */
+        right: 20px;
     }
 
     .hamburger-menu.open span:nth-child(1) {
@@ -719,7 +732,7 @@ body.dark-mode .news-item {
 }
 
 body.dark-mode .news-item:hover {
-    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+    box-shadow: 6px 15px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .news-item h2 {
