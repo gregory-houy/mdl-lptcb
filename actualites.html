@@ -2,219 +2,53 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Lycée Polyvalent | Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="rT7FhVtgQ3VDwmpmEIGLUB0xlYUB9ziTsrN9BKJCKbk" />
+    <title>Actualités - MDL du Lycée</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-
-        :root {
-            --primary-color: #38a169;
-            --secondary-color: #2b6cb0;
-            --danger-color: #e53e3e;
-            --bg-color: #f7fafc;
-            --card-bg: #ffffff;
-            --text-color: #2d3748;
-            --border-color: #cbd5e0;
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            padding: 0;
-        }
-
-        header {
-            background:#ffffff;
-            box-shadow:var(--shadow-light);
-            padding:15px 25px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-        }
-        .header-logo {
-            width:180px;
-            height:auto;
-        }
-        nav ul {
-            list-style:none;
-            margin:0;
-            padding:0;
-            display:flex;
-            gap:25px;
-        }
-        nav a {
-            text-decoration:none;
-            color:var(--text-color);
-            font-weight:500;
-            font-size:1.1em;
-            transition:color 0.3s ease;
-        }
-        nav a:hover {
-            color:var(--primary-color);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--text-color);
-            margin-bottom: 40px;
-        }
-
-        #actualites_container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .actualite_card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: var(--shadow-light);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .actualite_card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .actualite_image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .actualite_content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .actualite_content h2 {
-            font-size: 1.5em;
-            color: var(--secondary-color);
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .actualite_content p {
-            margin: 0 0 15px 0;
-            line-height: 1.6;
-            color: #555;
-            flex-grow: 1;
-        }
-
-        .actualite_meta {
-            font-size: 0.9em;
-            color: #718096;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
-        
-        .truncated_text {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            -webkit-line-clamp: 3; /* Limite à 3 lignes */
-            margin-bottom: 10px;
-        }
-
-        .voir_plus_btn {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            font-weight: bold;
-            text-align: left;
-            transition: color 0.3s ease;
-        }
-
-        .voir_plus_btn:hover {
-            color: var(--secondary-color);
-        }
-    </style>
 </head>
 <body>
     <header>
-        <img src="images/logos/lycee-mdl.png" alt="Logo du lycée" class="header-logo" />
         <nav>
-            <ul>
-                <li><a href="gestion_actualites.html">Gestion Actualités</a></li>
+            <div class="logo">MDL du Lycée</div>
+            <button class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="journees-thematiques.html">Journées à Thèmes</a></li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="trombinoscope.html">Notre équipe</a></li>
+                <li><a href="horaires.html">Horaires d'ouverture</a></li>
+                <li><a href="vente.html">Vente</a></li>
+                <li><a href="prix.html">Prix</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="boite-a-idee.html">Boite à idées</a></li>
+                <li><a href="https://my.matterport.com/show/?m=zjwMjjYAivi" target="_blank">Visite virtuelle</a></li>
             </ul>
+            <a href="https://page-de-connexion-html.vercel.app" class="login-button">Espace membre</a>
         </nav>
     </header>
 
-    <div class="container">
-        <h1>Actualités du Lycée</h1>
-        <div id="actualites_container">
-            </div>
-    </div>
+    <main class="container">
+        <h1>Dernières Actualités de la MDL</h1>
+        <p>Restez informé de tout ce qui se passe à la Maison Des Lycéens !</p>
+    </main>
 
-    <script>
-        const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    <footer>
+        <p>&copy; 2025 MDL du Lycée Château Blanc</p>
+    </footer>
 
-        async function chargerActualites() {
-            const { data, error } = await supabase
-                .from("actualites")
-                .select("*")
-                .order("date_publication", { ascending: false });
-
-            if (error) {
-                console.error("Erreur de chargement :", error);
-                return;
-            }
-
-            const container = document.getElementById("actualites_container");
-            container.innerHTML = ""; // Vide le conteneur avant d'ajouter les nouvelles actualités
-
-            data.forEach(actu => {
-                const actualiteCard = document.createElement("div");
-                actualiteCard.className = "actualite_card";
-
-                const date = new Date(actu.date_publication).toLocaleDateString("fr-FR", { year: 'numeric', month: 'long', day: 'numeric' });
-
-                actualiteCard.innerHTML = `
-                    <img src="${actu.url_image}" alt="${actu.titre}" class="actualite_image">
-                    <div class="actualite_content">
-                        <h2>${actu.titre}</h2>
-                        <p id="text_${actu.id}" class="truncated_text">${actu.texte_descriptif}</p>
-                        <button class="voir_plus_btn" onclick="voirPlus('${actu.id}')">Voir plus</button>
-                        <div class="actualite_meta">
-                            <span>Publié par : ${actu.auteur || 'Non spécifié'}</span>
-                            <span>${date}</span>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(actualiteCard);
-            });
-        }
-        
-        function voirPlus(id) {
-            const textElement = document.getElementById(`text_${id}`);
-            const buttonElement = textElement.nextElementSibling;
-            
-            textElement.classList.remove('truncated_text');
-            buttonElement.style.display = 'none'; // Cache le bouton
-        }
-
-        document.addEventListener("DOMContentLoaded", chargerActualites);
-    </script>
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        🌙
+    </button>
+    
+    <script src="script.js"></script>
+    <script src="actualites.js"></script>
 </body>
 </html>
