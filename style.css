@@ -1,413 +1,418 @@
 body {
-      font-family: sans-serif;
-      margin: 0;
-      background-color: #f4f4f4;
-      color: #333;
-      line-height: 1.6;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      text-align: center; /* Centrer le contenu principal */
-      transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transition pour le mode sombre */
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centrer le contenu principal */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transition pour le mode sombre */
 }
 
 .logo-container {
-      display: flex;
-      justify-content: center; /* Centrer les images horizontalement par défaut (PC) */
-      align-items: center;
-      margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Centrer les images horizontalement par défaut (PC) */
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .logo-container img {
-      max-width: 250px; /* Agrandissement de la taille maximale sur PC */
-      height: auto;
-      margin: 0 20px; /* Augmentation de l'espacement sur PC */
+    max-width: 250px; /* Agrandissement de la taille maximale sur PC */
+    height: auto;
+    margin: 0 20px; /* Augmentation de l'espacement sur PC */
 }
 
 /* Règles pour les logos en fonction du mode */
 .logo-container .light-mode-logo {
-      display: inline-block; /* Affiché par défaut en mode clair */
+    display: inline-block; /* Affiché par défaut en mode clair */
 }
 
 .logo-container .dark-mode-logo {
-      display: none; /* Caché par default en mode clair */
+    display: none; /* Caché par default en mode clair */
 }
 
 body.dark-mode .logo-container .light-mode-logo {
-      display: none; /* Cache le logo clair en mode sombre */
+    display: none; /* Cache le logo clair en mode sombre */
 }
 
 body.dark-mode .logo-container .dark-mode-logo {
-      display: inline-block; /* Affiche le logo sombre en mode sombre */
+    display: inline-block; /* Affiche le logo sombre en mode sombre */
 }
 
 
 header {
-      background-color: #333;
-      color: white;
-      padding: 1em 20px; /* Ajouter du padding horizontal pour aligner avec nav */
-      display: flex;
-      justify-content: space-between; /* Espacement par défaut pour PC */
-      align-items: center;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
+    background-color: #333;
+    color: white;
+    padding: 1em 20px; /* Ajouter du padding horizontal pour aligner avec nav */
+    display: flex;
+    justify-content: space-between; /* Espacement par défaut pour PC */
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 nav {
-      display: flex;
-      justify-content: space-between; /* Espacement par défaut pour PC */
-      align-items: center;
-      max-width: 1600px;
-      margin: 0 auto;
-      width: 100%; /* Pour que nav prenne toute la largeur du header */
+    display: flex;
+    justify-content: space-between; /* Espacement par défaut pour PC */
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%; /* Pour que nav prenne toute la largeur du header */
 }
 
 .logo {
-      font-size: 1.5em;
-      font-weight: bold;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
-/* NOUVELLE RÈGLE : Redimensionne le logo dans le header */
+/* Redimensionne le logo dans le header pour les écrans PC */
 .logo img {
-      height: 40px; /* Taille désirée */
-      width: auto; /* Maintient le ratio */
+    height: 40px;
+    width: auto;
 }
 
 .hamburger-menu {
-      display: none; /* Cacher par défaut sur les écrans plus larges */
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 20px;
-      cursor: pointer;
-      padding: 0;
-      border: none;
-      background: transparent;
+    display: none; /* Cacher par défaut sur les écrans plus larges */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    background: transparent;
 }
 
 .hamburger-menu span {
-      display: block;
-      height: 3px;
-      background-color: white; /* Couleur des traits */
-      border-radius: 3px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+    display: block;
+    height: 3px;
+    background-color: white; /* Couleur des traits */
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .nav-links {
-      display: flex;
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .nav-links li {
-      margin-left: 15px;
+    margin-left: 15px;
 }
 
 .nav-links li a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.3s ease; /* Transition pour le mode sombre */
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 .nav-links li a:hover {
-      color: #ddd;
+    color: #ddd;
 }
 
 .nav-links li a.active {
-      font-weight: bold;
-      color: #ddd;
+    font-weight: bold;
+    color: #ddd;
 }
 
 .login-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 8px 15px;
-      cursor: pointer;
-      text-decoration: none;
-      font-size: 0.9em;
-      transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
 }
 
 .login-button:hover {
-      background-color: #0056b3;
-      color: skyblue;
+    background-color: #0056b3;
+    color: skyblue;
 }
 
 main {
-      padding: 20px;
-      text-align: center; /* Centrer le texte de bienvenue */
+    padding: 20px;
+    text-align: center; /* Centrer le texte de bienvenue */
 }
 
 h1, h2 {
-      color: #333;
-      margin-bottom: 15px;
-      transition: color 0.3s ease; /* Transition pour le mode sombre */
+    color: #333;
+    margin-bottom: 15px;
+    transition: color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 .hero {
-      text-align: center;
-      padding: 40px 0;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      transition: background-color 0.3s ease; /* Transition pour le mode sombre */
+    text-align: center;
+    padding: 40px 0;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
 .history-section {
-      padding: 20px;
-      background-color: #eee;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      transition: background-color 0.3s ease; /* Transition pour le mode sombre */
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 .event, .pricing, .opening-hours { /* news-item est retiré d'ici pour avoir des styles spécifiques plus bas */
-      margin-bottom: 20px;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background-color: #fff;
-      transition: background-color 0.3s ease, border-color 0.3s ease; /* Transition pour le mode sombre */
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 /* IMPORTANT: Enveloppez le tableau dans une div pour le rendre défilable */
 /* Le tableau lui-même conserve ses styles pour les grandes largeurs */
 table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed; /* Force les colonnes égales */
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Force les colonnes égales */
 }
 
 th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-      width: 33.33%; /* Chaque colonne prend un tiers */
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transition pour le mode sombre */
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    width: 33.33%; /* Chaque colonne prend un tiers */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 th {
-      background-color: #f2f2f2;
-      font-weight: bold;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
+    background-color: #f2f2f2;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 footer {
-      text-align: center;
-      padding: 0.3em 0;
-      background-color: #333;
-      color: white;
-      position: fixed; /* Pour rester en bas de la fenêtre, même si peu de contenu */
-      bottom: 0;
-      width: 100%;
-      font-size: 0.7em;
-      transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
+    text-align: center;
+    padding: 0.3em 0;
+    background-color: #333;
+    color: white;
+    position: fixed; /* Pour rester en bas de la fenêtre, même si peu de contenu */
+    bottom: 0;
+    width: 100%;
+    font-size: 0.7em;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le mode sombre */
 }
 
 /* --- Styles du bouton de bascule du mode clair/sombre --- */
 .dark-mode-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .dark-mode-toggle:hover {
-      background-color: #0056b3;
-      transform: scale(1.1);
+    background-color: #0056b3;
+    transform: scale(1.1);
 }
 
 /* --- Styles pour le mode sombre (quand la classe 'dark-mode' est sur le body) --- */
 body.dark-mode {
-      background-color: #1a1a1a; /* Fond très sombre */
-      color: #f0f0f0;             /* Texte clair */
+    background-color: #1a1a1a; /* Fond très sombre */
+    color: #f0f0f0;             /* Texte clair */
 }
 
 body.dark-mode .container {
-      background-color: #2a2a2a;
-      box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    background-color: #2a2a2a;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode header {
-      background-color: #0d0d0d;
-      color: #e0e0e0;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
 }
 
 body.dark-mode nav a {
-      color: #e0e0e0;
+    color: #e0e0e0;
 }
 
 body.dark-mode nav a:hover {
-      color: #aaaaaa;
+    color: #aaaaaa;
 }
 
 body.dark-mode .hamburger-menu span {
-      background-color: #e0e0e0; /* Les traits du hamburger menu en blanc */
+    background-color: #e0e0e0; /* Les traits du hamburger menu en blanc */
 }
 
 body.dark-mode h1,
 body.dark-mode h2 {
-      color: #f0f0f0;
+    color: #f0f0f0;
 }
 
 body.dark-mode .hero {
-      background-color: #222222;
+    background-color: #222222;
 }
 
 body.dark-mode .history-section {
-      background-color: #222222;
+    background-color: #222222;
 }
 
 body.dark-mode .event,
 body.dark-mode .pricing,
 body.dark-mode .opening-hours { /* news-item est retiré d'ici */
-      background-color: #333333;
-      border-color: #444444;
+    background-color: #333333;
+    border-color: #444444;
 }
 
 body.dark-mode table th {
-      background-color: #333333;
-      color: #f0f0f0;
+    background-color: #333333;
+    color: #f0f0f0;
 }
 
 body.dark-mode table td {
-      border-color: #444444;
+    border-color: #444444;
 }
 
 body.dark-mode footer {
-      background-color: #0d0d0d;
-      color: #e0e0e0;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
 }
 
 /* Styles du mode sombre pour les éléments du trombinoscope (si ces classes sont utilisées) */
 body.dark-mode .person-card {
-      background-color: #333333;
-      border-color: #444444;
+    background-color: #333333;
+    border-color: #444444;
 }
 
 body.dark-mode .person-card h3 {
-      color: #f0f0f0;
+    color: #f0f0f0;
 }
 
 body.dark-mode .person-card p {
-      color: #cccccc;
+    color: #cccccc;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-      .logo-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-      }
+    /* NOUVELLE RÈGLE : Réduit la taille du logo sur les téléphones */
+    .logo img {
+        height: 30px; /* Taille réduite */
+    }
+    
+    .logo-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+    }
 
-      .logo-container img {
-            max-width: 150px;
-            margin: 0 10px;
-      }
+    .logo-container img {
+        max-width: 150px;
+        margin: 0 10px;
+    }
 
-      .nav-links {
-            display: none;
-            flex-direction: column;
-            background-color: #333; /* Reste sombre pour le menu hamburger */
-            position: absolute;
-            top: 60px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            z-index: 10;
-      }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #333; /* Reste sombre pour le menu hamburger */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+    }
 
-      /* S'assurer que le menu hamburger conserve son fond sombre en mode sombre */
-      body.dark-mode .nav-links {
-            background-color: #0d0d0d;
-      }
+    /* S'assurer que le menu hamburger conserve son fond sombre en mode sombre */
+    body.dark-mode .nav-links {
+        background-color: #0d0d0d;
+    }
 
-      .nav-links.open {
-            display: flex;
-      }
+    .nav-links.open {
+        display: flex;
+    }
 
-      .nav-links li {
-            margin: 15px 0;
-      }
+    .nav-links li {
+        margin: 15px 0;
+    }
 
-      .hamburger-menu {
-            display: flex;
-      }
+    .hamburger-menu {
+        display: flex;
+    }
 
-      .hamburger-menu.open span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-      }
+    .hamburger-menu.open span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
 
-      .hamburger-menu.open span:nth-child(2) {
-            opacity: 0;
-      }
+    .hamburger-menu.open span:nth-child(2) {
+        opacity: 0;
+    }
 
-      .hamburger-menu.open span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-      }
+    .hamburger-menu.open span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
 
-      nav ul {
-            display: block;
-      }
+    nav ul {
+        display: block;
+    }
 
-      .login-button {
-            margin-top: 10px;
-      }
+    .login-button {
+        margin-top: 10px;
+    }
 
-      main {
-            text-align: center;
-      }
+    main {
+        text-align: center;
+    }
 
-      .hero h1 {
-            font-size: 2em;
-      }
+    .hero h1 {
+        font-size: 2em;
+    }
 
-      /* --- RÈGLES POUR LE TABLEAU DÉFILABLE SUR MOBILE (ajustement du débordement) --- */
-      .table-responsive {
-            width: 100%;
-            overflow-x: auto; /* Permet le défilement horizontal */
-            -webkit-overflow-scrolling: touch;
-      }
+    /* --- RÈGLES POUR LE TABLEAU DÉFILABLE SUR MOBILE (ajustement du débordement) --- */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto; /* Permet le défilement horizontal */
+        -webkit-overflow-scrolling: touch;
+    }
 
-      th, td {
-            min-width: 120px; /* Largeur minimale pour éviter une trop grande compression */
-            width: auto; /* Laisse de la flexibilité */
-            white-space: normal; /* Permet au texte de passer à la ligne */
-            overflow: visible; /* Permet au contenu d'être entièrement visible dans la cellule */
-            text-overflow: clip; /* Retire les points de suspension */
-            word-break: break-word; /* Casse les mots très longs si nécessaire */
-      }
-      /* --- FIN DES RÈGLES MOBILE --- */
+    th, td {
+        min-width: 120px; /* Largeur minimale pour éviter une trop grande compression */
+        width: auto; /* Laisse de la flexibilité */
+        white-space: normal; /* Permet au texte de passer à la ligne */
+        overflow: visible; /* Permet au contenu d'être entièrement visible dans la cellule */
+        text-overflow: clip; /* Retire les points de suspension */
+        word-break: break-word; /* Casse les mots très longs si nécessaire */
+    }
+    /* --- FIN DES RÈGLES MOBILE --- */
 }
 
 /* ----------------------------------------------------- */
@@ -416,217 +421,217 @@ body.dark-mode .person-card p {
 /* ----------------------------------------------------- */
 
 .mdl-ouverte{
-      color: #3eff00;
-      font-weight: bold;
+    color: #3eff00;
+    font-weight: bold;
 }
 
 .mdl-fermee{
-      color: red;
-      font-weight: bold;
+    color: red;
+    font-weight: bold;
 }
 
 /* ----------------------------------------------------- */
 /* --- Début des styles de la page contact (Nettoyés et optimisés) --- */
 /* Section "Héro" spécifique à la page Contact */
 .contact-page-hero {
-      text-align: center;
-      padding: 40px 20px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-page-hero h1 {
-      font-size: 3em;
-      color: #333;
-      margin-bottom: 10px;
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .contact-page-hero p {
-      font-size: 1.2em;
-      color: #555;
-      max-width: 700px;
-      margin: 0 auto;
+    font-size: 1.2em;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 /* Section des détails de contact sous forme de cartes */
 .contact-details-section {
-      display: flex;
-      flex-wrap: wrap; /* Permet aux cartes de passer à la ligne */
-      justify-content: center; /* Centre les cartes horizontalement sur les grands écrans */
-      gap: 30px; /* Espacement entre les cartes */
-      margin-bottom: 40px;
-      padding: 0 20px; /* Petit padding pour éviter de coller les bords */
+    display: flex;
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne */
+    justify-content: center; /* Centre les cartes horizontalement sur les grands écrans */
+    gap: 30px; /* Espacement entre les cartes */
+    margin-bottom: 40px;
+    padding: 0 20px; /* Petit padding pour éviter de coller les bords */
 }
 
 .detail-card {
-      background-color: #fff;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      padding: 30px;
-      flex: 1 1 300px; /* Base pour que les cartes soient réactives */
-      max-width: 380px; /* Limite la largeur max de chaque carte */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 30px;
+    flex: 1 1 300px; /* Base pour que les cartes soient réactives */
+    max-width: 380px; /* Limite la largeur max de chaque carte */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 
-      /* --- AJOUTS POUR CENTRAGE VERTICAL ET HORIZONTAL DU CONTENU DE LA CARTE --- */
-      display: flex;
-      flex-direction: column; /* Empile le contenu verticalement */
-      justify-content: center; /* Centre le contenu verticalement */
-      align-items: center; /* Centre le contenu horizontalement */
-      text-align: center; /* Assure que le texte lui-même est centré horizontalement */
+    /* --- AJOUTS POUR CENTRAGE VERTICAL ET HORIZONTAL DU CONTENU DE LA CARTE --- */
+    display: flex;
+    flex-direction: column; /* Empile le contenu verticalement */
+    justify-content: center; /* Centre le contenu verticalement */
+    align-items: center; /* Centre le contenu horizontalement */
+    text-align: center; /* Assure que le texte lui-même est centré horizontalement */
 }
 
 .detail-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .detail-card h3 {
-      font-size: 1.8em;
-      margin-bottom: 15px;
-      color: #007bff; /* Couleur d'accentuation */
-      display: flex; /* Garde la flexbox pour l'icône à côté du texte du titre */
-      align-items: center;
-      justify-content: center;
-      text-align: center; /* S'assure que le titre lui-même est centré */
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #007bff; /* Couleur d'accentuation */
+    display: flex; /* Garde la flexbox pour l'icône à côté du texte du titre */
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* S'assure que le titre lui-même est centré */
 }
 
 .detail-card .icon {
-      font-size: 1.2em; /* Taille de l'icône */
-      margin-right: 10px;
+    font-size: 1.2em; /* Taille de l'icône */
+    margin-right: 10px;
 }
 
 .detail-card p {
-      font-size: 1.05em;
-      color: #666;
-      margin-bottom: 10px;
-      line-height: 1.6;
-      text-align: center; /* S'assure que les paragraphes sont centrés horizontalement */
-      flex-grow: 1; /* Permet aux paragraphes de prendre l'espace disponible verticalement */
+    font-size: 1.05em;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    text-align: center; /* S'assure que les paragraphes sont centrés horizontalement */
+    flex-grow: 1; /* Permet aux paragraphes de prendre l'espace disponible verticalement */
 }
 
 .detail-card .contact-value {
-      font-size: 1.15em;
-      font-weight: bold;
-      margin-top: 15px;
-      color: #333;
-      text-align: center; /* Centrer les valeurs de contact */
+    font-size: 1.15em;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #333;
+    text-align: center; /* Centrer les valeurs de contact */
 }
 
 .detail-card a {
-      color: #007bff;
-      text-decoration: none;
-      transition: color 0.2s ease;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .detail-card a:hover {
-      text-decoration: underline;
-      color: #0056b3;
+    text-decoration: underline;
+    color: #0056b3;
 }
 
 /* Section d'informations additionnelles */
 .additional-info-section {
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 30px;
-      background-color: #f2f2f2;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 30px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .additional-info-section h2 {
-      font-size: 2em;
-      color: #333;
-      margin-bottom: 15px;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
 }
 
 .additional-info-section p {
-      font-size: 1.1em;
-      color: #555;
-      max-width: 800px;
-      margin: 0 auto 15px auto;
+    font-size: 1.1em;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 15px auto;
 }
 
 /* Adaptation au mode sombre pour la page Contact */
 
 body.dark-mode .contact-page-hero {
-      background-color: #222222;
-      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+    background-color: #222222;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode .contact-page-hero h1 {
-      color: #f0f0f0;
+    color: #f0f0f0;
 }
 
 body.dark-mode .contact-page-hero p {
-      color: #cccccc;
+    color: #cccccc;
 }
 
 body.dark-mode .detail-card {
-      background-color: #2a2a2a;
-      border-color: #444444;
-      box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
+    background-color: #2a2a2a;
+    border-color: #444444;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode .detail-card:hover {
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .detail-card h3 {
-      color: #88bbff; /* Une couleur d'accentuation plus claire pour le mode sombre */
+    color: #88bbff; /* Une couleur d'accentuation plus claire pour le mode sombre */
 }
 
 body.dark-mode .detail-card p,
 body.dark-mode .detail-card .contact-value {
-      color: #cccccc;
+    color: #cccccc;
 }
 
 body.dark-mode .detail-card a {
-      color: #88bbff;
+    color: #88bbff;
 }
 
 body.dark-mode .detail-card a:hover {
-      color: #aaddee;
+    color: #aaddee;
 }
 
 body.dark-mode .additional-info-section {
-      background-color: #222222;
-      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+    background-color: #222222;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode .additional-info-section h2 {
-      color: #f0f0f0;
+    color: #f0f0f0;
 }
 
 body.dark-mode .additional-info-section p {
-      color: #cccccc;
+    color: #cccccc;
 }
 
 /* Responsive design pour les cartes (peut déjà être géré par .detail-card flex) */
 @media (max-width: 768px) {
-      .contact-details-section {
-            flex-direction: column; /* Empile les cartes sur petits écrans */
-            /* C'est ici que l'alignement des BOÎTES (les items Flex) se fait */
-            align-items: center;
-      }
+    .contact-details-section {
+        flex-direction: column; /* Empile les cartes sur petits écrans */
+        /* C'est ici que l'alignement des BOÎTES (les items Flex) se fait */
+        align-items: center;
+    }
 
-      .detail-card {
-            max-width: 90%; /* Les cartes prennent plus de largeur sur mobile */
-            /* Supprimez les marges auto ici, car align-items: center sur le parent s'en charge */
-            /* margin-left: auto; */
-            /* margin-right: auto; */
-      }
+    .detail-card {
+        max-width: 90%; /* Les cartes prennent plus de largeur sur mobile */
+        /* Supprimez les marges auto ici, car align-items: center sur le parent s'en charge */
+        /* margin-left: auto; */
+        /* margin-right: auto; */
+    }
 
-      .contact-page-hero h1 {
-            font-size: 2.2em;
-      }
-      .contact-page-hero p {
-            font-size: 1em;
-      }
+    .contact-page-hero h1 {
+        font-size: 2.2em;
+    }
+    .contact-page-hero p {
+        font-size: 1em;
+    }
 }
 /* --- Fin des styles de la page contact --- */
 /* ----------------------------------------------------- */
@@ -635,98 +640,98 @@ body.dark-mode .additional-info-section p {
 /* --- NOUVEAUX STYLES POUR LES ACTUALITÉS (MODIFIÉS POUR IMAGE À GAUCHE) --- */
 
 .news-item {
-      display: flex; /* Fait de l'actualité un conteneur Flex */
-      flex-direction: column; /* Empile les éléments verticalement par défaut (mobile) */
-      align-items: center; /* Centre horizontalement sur mobile */
-      text-align: center; /* Centre le texte sur mobile */
-      margin-bottom: 25px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    display: flex; /* Fait de l'actualité un conteneur Flex */
+    flex-direction: column; /* Empile les éléments verticalement par défaut (mobile) */
+    align-items: center; /* Centre horizontalement sur mobile */
+    text-align: center; /* Centre le texte sur mobile */
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .news-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .news-image {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-      margin-bottom: 15px; /* Un peu d'espace sous l'image sur mobile */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 15px; /* Un peu d'espace sous l'image sur mobile */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
 .news-item h2 {
-      font-size: 1.8em;
-      color: #007bff;
-      margin-bottom: 10px;
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 10px;
 }
 
 .news-item p {
-      font-size: 1.1em;
-      color: #555;
-      line-height: 1.7;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.7;
 }
 
 /* Conteneur pour le titre et la description */
 .news-content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* Aligne le contenu à gauche */
-      text-align: left; /* Aligne le texte à gauche */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligne le contenu à gauche */
+    text-align: left; /* Aligne le texte à gauche */
 }
 
 /* Ajustements responsives pour les actualités (image à gauche sur PC) */
 @media (min-width: 769px) {
-      .news-item {
-            flex-direction: row; /* Image et contenu côte à côte sur PC */
-            align-items: flex-start; /* Aligne l'image et le contenu en haut */
-            text-align: left; /* Aligne le texte à gauche sur PC */
-      }
+    .news-item {
+        flex-direction: row; /* Image et contenu côte à côte sur PC */
+        align-items: flex-start; /* Aligne l'image et le contenu en haut */
+        text-align: left; /* Aligne le texte à gauche sur PC */
+    }
 
-      .news-image {
-            max-width: 200px; /* Taille de l'image à gauche */
-            min-width: 200px;
-            margin-right: 20px; /* Espace entre l'image et le contenu */
-            margin-bottom: 0; /* Supprime la marge du bas sur PC */
-      }
+    .news-image {
+        max-width: 200px; /* Taille de l'image à gauche */
+        min-width: 200px;
+        margin-right: 20px; /* Espace entre l'image et le contenu */
+        margin-bottom: 0; /* Supprime la marge du bas sur PC */
+    }
 
-      /* Le contenu prend l'espace restant */
-      .news-content {
-            flex-grow: 1;
-      }
+    /* Le contenu prend l'espace restant */
+    .news-content {
+        flex-grow: 1;
+    }
 
-      .news-item h2 {
-            margin-top: 0; /* Supprime la marge du haut du titre sur PC */
-      }
+    .news-item h2 {
+        margin-top: 0; /* Supprime la marge du haut du titre sur PC */
+    }
 }
 
 /* Ajustements pour le mode sombre des actualités */
 body.dark-mode .news-item {
-      background-color: #2a2a2a;
-      border-color: #444444;
-      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+    background-color: #2a2a2a;
+    border-color: #444444;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 
 body.dark-mode .news-item:hover {
-      box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .news-item h2 {
-      color: #88bbff;
+    color: #88bbff;
 }
 
 body.dark-mode .news-item p {
-      color: #cccccc;
+    color: #cccccc;
 }
 
 body.dark-mode .news-image {
-      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
 }
 
 /* --- FIN DES NOUVEAUX STYLES POUR LES ACTUALITÉS (MODIFIÉS POUR IMAGE À GAUCHE) --- */
