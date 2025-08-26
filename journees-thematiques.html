@@ -5,9 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="rT7FhVtgQ3VDwmpmEIGLUB0xlYUB9ziTsrN9BKJCKbk" />
     <title>Journées à Thèmes - MDL du Lycée</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Styles pour le corps de la page et le conteneur principal */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            background-color: #f7fafc;
+            color: #2d3748;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Styles pour les titres et paragraphes */
+        h1, p {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        /* Style pour chaque carte d'événement */
+        .event {
+            display: flex;
+            align-items: center; /* Centre verticalement l'image et le texte */
+            gap: 20px; /* Ajoute un espace entre l'image et le texte */
+            margin-bottom: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .event img {
+            width: 250px; /* Définit une largeur fixe pour toutes les images */
+            height: 180px; /* Définit une hauteur fixe pour toutes les images */
+            object-fit: cover; /* Recadre l'image pour qu'elle remplisse l'espace sans se déformer */
+            border-radius: 8px;
+        }
+
+        .event h2,
+        .event p {
+            margin: 0;
+        }
+
+        /* Styles de navigation (comme sur votre site d'origine) */
+        header {
+            background-color: #ffffff;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #2d3748;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38a169;
+        }
+
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: #4a5568;
+        }
+
+        .login-button {
+            background-color: #2b6cb0;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #1a365d;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger-menu {
+                display: flex;
+            }
+            nav {
+                flex-wrap: wrap;
+            }
+        }
+        
+        /* Styles pour le footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background-color: #f0f4f8;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Styles pour le bouton dark mode */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2d3748;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #4a5568;
+        }
+    </style>
 </head>
 <body>
     <header>
