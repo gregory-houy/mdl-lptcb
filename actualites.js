@@ -1,11 +1,9 @@
 // actualites.js
 
 // 1. Initialisation du client Supabase
-// Remplacez les valeurs suivantes par vos propres clés Supabase
 const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
 
-// La ligne corrigée : on utilise window.supabase
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // 2. Fonction pour récupérer les actualités
@@ -19,7 +17,7 @@ async function fetchActualites() {
             if (error) {
                   throw error;
             }
-            
+            
             renderActualites(data);
 
       } catch (error) {
@@ -43,10 +41,7 @@ function renderActualites(actualites) {
             article.className = 'news-item';
 
             const img = document.createElement('img');
-
-            // 🚨 Ligne corrigée : On utilise directement l'URL de la base de données
             img.src = actualite.url_image;
-
             img.alt = actualite.titre;
             img.className = 'news-image';
 
@@ -59,17 +54,15 @@ function renderActualites(actualites) {
             titleH2.textContent = `${date} - ${actualite.titre}`;
 
             const descriptionP = document.createElement('p');
-            descriptionP.textContent = actualite.texte_descriptif;
-        
-        // AJOUT DU PARAGRAPHE POUR L'AUTEUR
-        const auteurP = document.createElement('p');
-        auteurP.className = 'news-author';
-        auteurP.textContent = `Publié par : ${actualite.auteur || 'Non spécifié'}`;
+            descriptionP.innerHTML = actualite.texte_descriptif.replace(/\n/g, '<br>');
+
+            const auteurP = document.createElement('p');
+            auteurP.className = 'news-author';
+            auteurP.textContent = `Publié par : ${actualite.auteur || 'Non spécifié'}`;
 
             contentDiv.appendChild(titleH2);
             contentDiv.appendChild(descriptionP);
-        // AJOUT DE L'AUTEUR AU CONTENU
-        contentDiv.appendChild(auteurP);
+            contentDiv.appendChild(auteurP);
             article.appendChild(img);
             article.appendChild(contentDiv);
 
