@@ -50,11 +50,10 @@
     </button>
     <script src="script.js"></script>
     <script>
-        // Remplacez ces valeurs par vos propres clés Supabase
+        // Vos clés Supabase
         const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
         
-        // Correction de l'initialisation du client Supabase
         const { createClient } = window.supabase;
         const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
         
@@ -70,7 +69,7 @@
             }
 
             const container = document.getElementById("events-container");
-            container.innerHTML = ""; // Vide le conteneur
+            container.innerHTML = "";
 
             journees.forEach(journee => {
                 const eventCard = document.createElement("section");
