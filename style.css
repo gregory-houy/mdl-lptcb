@@ -1,3 +1,8 @@
+.logo-haut
+{
+    max-height: 15px;
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
