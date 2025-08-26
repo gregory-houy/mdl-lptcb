@@ -19,7 +19,7 @@ async function fetchActualites() {
             if (error) {
                   throw error;
             }
-            
+            
             renderActualites(data);
 
       } catch (error) {
@@ -43,14 +43,21 @@ function renderActualites(actualites) {
             article.className = 'news-item';
 
             const img = document.createElement('img');
+
+            // 🚨 Ligne corrigée et optimisée
+        const bucketName = 'actualites_images';
+        let imageUrl = '';
+
+        try {
+            const { data } = supabase.storage.from(bucketName).getPublicUrl(actualite.url_image);
+            imageUrl = data.publicUrl;
+        } catch (error) {
+            console.error('Erreur de génération de l\'URL publique :', error.message);
+            // On utilise une image par défaut si l'URL ne peut pas être générée
+            imageUrl = 'https://via.placeholder.com/600x400?text=Image+non+disponible';
+        }
             
-        // 🚨 Ligne corrigée : générer l'URL publique de l'image
-        const { data: { publicUrl } } = supabase
-          .storage
-          .from('actualites_images')
-          .getPublicUrl(actualite.url_image);
-            
-        img.src = publicUrl;
+        img.src = imageUrl;
             img.alt = actualite.titre;
             img.className = 'news-image';
 
@@ -58,7 +65,7 @@ function renderActualites(actualites) {
             contentDiv.className = 'news-content';
 
             const date = new Date(actualite.date_publication).toLocaleDateString('fr-FR');
-
+            
             const titleH2 = document.createElement('h2');
             titleH2.textContent = `${date} - ${actualite.titre}`;
 
