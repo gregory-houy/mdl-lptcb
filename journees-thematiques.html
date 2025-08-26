@@ -37,7 +37,7 @@
     <main class="container">
         <h1 class="page-title">Nos prochaines Journées à Thèmes</h1>
         <p class="page-subtitle">Retrouvez ici le calendrier de nos événements et journées spéciales !</p>
-        
+
         <section id="events-container">
             </section>
     </main>
@@ -75,14 +75,11 @@
             journees.forEach(journee => {
                 const formattedDate = new Date(journee.date_journee_thematique).toLocaleDateString();
 
-                // Création d'une section unique pour chaque événement
-                const eventSection = document.createElement("section");
+                const eventSection = document.createElement("div");
                 eventSection.classList.add("event-card");
 
                 eventSection.innerHTML = `
-                    <div class="event-image-container">
-                        <img src="${journee.url_image}" alt="${journee.titre}">
-                    </div>
+                    <img src="${journee.url_image}" alt="${journee.titre}" class="event-image">
                     <div class="event-content">
                         <h2>${formattedDate} - ${journee.titre}</h2>
                         <p>${journee.texte_descriptif}</p>
