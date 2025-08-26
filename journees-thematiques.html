@@ -75,17 +75,17 @@
             journees.forEach(journee => {
                 const formattedDate = new Date(journee.date_journee_thematique).toLocaleDateString();
 
-                const eventSection = document.createElement("div");
-                eventSection.classList.add("event-card");
+                const eventCard = document.createElement("div");
+                eventCard.classList.add("event-card");
 
-                eventSection.innerHTML = `
+                eventCard.innerHTML = `
                     <img src="${journee.url_image}" alt="${journee.titre}" class="event-image">
                     <div class="event-content">
                         <h2>${formattedDate} - ${journee.titre}</h2>
                         <p>${journee.texte_descriptif}</p>
                     </div>
                 `;
-                container.appendChild(eventSection);
+                container.appendChild(eventCard);
             });
         }
 
