@@ -9,59 +9,6 @@
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
-        .actualite_card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .actualite_card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .actualite_content {
-            padding: 15px;
-        }
-
-        .actualite_content h2 {
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .actualite_content p {
-            margin: 0;
-            line-height: 1.6;
-            white-space: pre-wrap; /* Maintient les sauts de ligne */
-        }
-
-        .actualite_meta {
-            font-size: 0.9em;
-            color: #777;
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .truncated_text {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            -webkit-line-clamp: 3; /* Limite à 3 lignes par défaut */
-        }
-        .voir_plus_btn {
-            background: none;
-            border: none;
-            color: #007bff;
-            cursor: pointer;
-            font-weight: bold;
-            padding: 0;
-            margin-top: 5px;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -91,8 +38,6 @@
     <main class="container">
         <h1>Dernières Actualités de la MDL</h1>
         <p>Restez informé de tout ce qui se passe à la Maison Des Lycéens !</p>
-        <div id="actualites_container">
-            </div>
     </main>
 
     <footer>
@@ -104,77 +49,6 @@
     </button>
     
     <script src="script.js"></script>
-    <script>
-        const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        async function renderActualites() {
-            const { data, error } = await supabase
-                .from('actualites')
-                .select('*')
-                .order('date_publication', { ascending: false });
-
-            if (error) {
-                console.error('Erreur de chargement des actualités:', error);
-                return;
-            }
-
-            const container = document.getElementById('actualites_container');
-            container.innerHTML = '';
-
-            data.forEach(actualite => {
-                const actualiteDiv = document.createElement('div');
-                actualiteDiv.className = 'actualite_card';
-
-                const datePublication = new Date(actualite.date_publication).toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                
-                const shortDescription = actualite.texte_descriptif.replace(/\n/g, '<br>');
-                const truncatedText = shortDescription.split('<br>').slice(0, 3).join('<br>');
-                const showButton = shortDescription.split('<br>').length > 3 || shortDescription.length > 200; // Condition pour afficher le bouton
-
-
-                actualiteDiv.innerHTML = `
-                    <img src="${actualite.url_image}" alt="${actualite.titre}">
-                    <div class="actualite_content">
-                        <h2>${actualite.titre}</h2>
-                        <div class="description_text" id="description_${actualite.id}">
-                            ${shortDescription}
-                        </div>
-                        ${showButton ? `<button class="voir_plus_btn" onclick="toggleText(this, '${actualite.id}')">Voir plus</button>` : ''}
-                        <div class="actualite_meta">
-                            <span>Publié par : ${actualite.auteur}</span>
-                            <span>${datePublication}</span>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(actualiteDiv);
-
-                const descriptionDiv = actualiteDiv.querySelector('.description_text');
-                descriptionDiv.innerHTML = truncatedText;
-            });
-        }
-        
-        async function toggleText(button, id) {
-            const { data } = await supabase.from('actualites').select('texte_descriptif').eq('id', id).single();
-            const fullText = data.texte_descriptif.replace(/\n/g, '<br>');
-            const descriptionDiv = document.getElementById(`description_${id}`);
-
-            if (button.textContent === 'Voir plus') {
-                descriptionDiv.innerHTML = fullText;
-                button.textContent = 'Voir moins';
-            } else {
-                const shortText = fullText.split('<br>').slice(0, 3).join('<br>');
-                descriptionDiv.innerHTML = shortText;
-                button.textContent = 'Voir plus';
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', renderActualites);
-    </script>
+    <script src="actualites.js"></script>
 </body>
 </html>
