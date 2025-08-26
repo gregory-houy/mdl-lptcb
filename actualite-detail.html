@@ -8,6 +8,49 @@
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Styles spécifiques pour la page de détail des actualités */
+        #actualite_detail {
+            max-width: 800px; /* Limite la largeur du conteneur de détail */
+            margin: 40px auto; /* Centre le conteneur sur la page */
+            padding: 20px;
+            background-color: #fff; /* Fond blanc pour la carte */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Légère ombre */
+        }
+
+        #actualite_detail img {
+            width: 70%; /* Réduit la largeur de l'image à 70% du conteneur parent */
+            max-width: 500px; /* Limite la taille maximale de l'image */
+            height: auto; /* Maintient les proportions de l'image */
+            display: block; /* Permet d'appliquer les marges automatiques */
+            margin: 0 auto 20px auto; /* Centre l'image et ajoute une marge en bas */
+            border-radius: 8px; /* Bords arrondis pour l'image */
+        }
+
+        #actualite_detail h1 {
+            color: #2b6cb0; /* Couleur du titre (peut être ajustée selon votre charte) */
+            text-align: center; /* Centre le titre */
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        #actualite_detail p {
+            line-height: 1.6; /* Espacement confortable entre les lignes */
+            white-space: pre-wrap; /* Maintient les sauts de ligne du texte source */
+            text-align: justify; /* Justifie le texte */
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee; /* Ligne de séparation */
+            padding-bottom: 10px;
+            text-align: center; /* Centre les informations méta */
+        }
+    </style>
 </head>
 <body>
     <header>
