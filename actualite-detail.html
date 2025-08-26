@@ -2,53 +2,158 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détails de l'Actualité</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail de l'actualité - MDL du Lycée</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Définition des variables de couleur pour le mode clair */
+        :root {
+            --card-bg: #fff;
+            --text-color: #333;
+            --meta-color: #777;
+            --border-color: #eee;
+        }
+
+        /* Redéfinition des variables de couleur pour le mode sombre */
+        body.dark-mode {
+            --card-bg: #2d2d2d;
+            --text-color: #f0f0f0;
+            --meta-color: #aaa;
+            --border-color: #555;
+        }
+
+        /* Styles spécifiques pour la page de détail des actualités */
+        #actualite_detail {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #actualite_detail img {
+            width: 200px;
+            max-width: 250px;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+        }
+
+        #actualite_detail h1 {
+            color: var(--text-color);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        #actualite_detail p {
+            line-height: 1.6;
+            white-space: pre-wrap;
+            text-align: justify;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            font-size: 0.9em;
+            color: var(--meta-color);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <a href="gestion_actualites.html">
-            <i class="fas fa-arrow-left"></i> Retour
-        </a>
-        <div id="actualite-details">
-            </div>
-    </div>
+    <header>
+        <nav>
+            <div class="logo">MDL du Lycée</div>
+            <button class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="journees-thematiques.html">Journées à Thèmes</a></li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="trombinoscope.html">Notre équipe</a></li>
+                <li><a href="horaires.html">Horaires d'ouverture</a></li>
+                <li><a href="vente.html">Vente</a></li>
+                <li><a href="prix.html">Prix</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="boite-a-idee.html">Boite à idées</a></li>
+                <li><a href="https://my.matterport.com/show/?m=zjwMjjYAivi" target="_blank">Visite virtuelle</a></li>
+            </ul>
+            <a href="https://page-de-connexion-html.vercel.app" class="login-button">Espace membre</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="actualite_detail">
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 MDL du Lycée Château Blanc</p>
+    </footer>
+
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        🌙
+    </button>
+
+    <script src="script.js"></script>
     <script>
         const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        document.addEventListener("DOMContentLoaded", async () => {
+        async function chargerDetailActualite() {
             const params = new URLSearchParams(window.location.search);
-            const actuId = params.get('id');
+            const id = params.get('id');
 
-            if (actuId) {
-                const { data, error } = await supabase
-                    .from("actualites")
-                    .select("*")
-                    .eq("id", actuId)
-                    .single();
-
-                if (error) {
-                    console.error("Erreur de chargement de l'actualité :", error);
-                    document.getElementById('actualite-details').innerHTML = "<p>Erreur lors du chargement de l'actualité.</p>";
-                    return;
-                }
-
-                const container = document.getElementById('actualite-details');
-                const formattedDate = new Date(data.date_publication).toLocaleDateString('fr-FR');
-                container.innerHTML = `
-                    <h1>${data.titre}</h1>
-                    <p><strong>Publié par :</strong> ${data.auteur || 'Non spécifié'}</p>
-                    <p><strong>Date :</strong> ${formattedDate}</p>
-                    <img src="${data.url_image}" alt="${data.titre}">
-                    <p>${data.texte_descriptif}</p>
-                `;
-            } else {
-                document.getElementById('actualite-details').innerHTML = "<p>Actualité non trouvée.</p>";
+            if (!id) {
+                document.getElementById('actualite_detail').innerHTML = '<p>Actualité non trouvée.</p>';
+                return;
             }
-        });
+
+            const { data, error } = await supabase
+                .from('actualites')
+                .select('*')
+                .eq('id', id)
+                .single();
+
+            if (error) {
+                console.error("Erreur de chargement de l'actualité:", error);
+                document.getElementById('actualite_detail').innerHTML = '<p>Erreur lors du chargement de l\'actualité.</p>';
+                return;
+            }
+
+            const actualite = data;
+            const container = document.getElementById('actualite_detail');
+            const datePublication = new Date(actualite.date_publication).toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            container.innerHTML = `
+                <img src="${actualite.url_image}" alt="${actualite.titre}">
+                <h1>${actualite.titre}</h1>
+                <div class="meta-info">
+                    <span>Publié par : ${actualite.auteur}</span>
+                    <span> - ${datePublication}</span>
+                </div>
+                <p>${actualite.texte_descriptif.replace(/\n/g, '<br>')}</p>
+            `;
+        }
+
+        document.addEventListener('DOMContentLoaded', chargerDetailActualite);
     </script>
 </body>
 </html>
