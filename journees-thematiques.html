@@ -2,53 +2,236 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="rT7FhVtgQ3VDwmpmEIGLUB0xlYUB9ziTsrN9BKJCKbk" />
-    <title>Journées à Thèmes - MDL du Lycée</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
+    <title>Gestion des Journées à Thèmes</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        :root {
+            --primary-color: #38a169;
+            --secondary-color: #2b6cb0;
+            --danger-color: #e53e3e;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --border-color: #cbd5e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        input, textarea, button {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            cursor: pointer;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            background-color: #1a365d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 25px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 700;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+        .actions-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .actions-container button {
+            width: 100px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .edit {
+            background-color: var(--primary-color);
+        }
+        .edit:hover {
+            background-color: #2f855a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .delete {
+            background-color: var(--danger-color);
+        }
+        .delete:hover {
+            background-color: #c53030;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: var(--text-color);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .close-button:hover {
+            color: var(--danger-color);
+        }
+        
+        #modalImagePreview {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px dashed var(--border-color);
+        }
+
+        #tableau_journees_thematiques img {
+            max-width: 120px;
+            height: auto;
+            border-radius: 6px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">MDL du Lycée</div>
-            <button class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="journees-thematiques.html">Journées à Thèmes</a></li>
-                <li><a href="actualites.html">Actualités</a></li>
-                <li><a href="trombinoscope.html">Notre équipe</a></li>
-                <li><a href="horaires.html">Horaires d'ouverture</a></li>
-                <li><a href="vente.html">Vente</a></li>
-                <li><a href="prix.html">Prix</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="boite-a-idee.html">Boite à idées</a></li>
-                <li><a href="https://my.matterport.com/show/?m=zjwMjjYAivi" target="_blank">Visite virtuelle</a></li>
-            </ul>
-            <a href="https://page-de-connexion-html.vercel.app" class="login-button">Espace membre</a>
-        </nav>
-    </header>
+    <div class="container">
+        <h1>Gestion des Journées à Thèmes</h1>
 
-    <main class="container">
-        <h1>Nos Prochaines Journées à Thèmes</h1>
-        <p>Retrouvez ici le calendrier de nos événements et journées spéciales !</p>
+        <h2>Ajouter une journée à thème</h2>
+        <input id="titre_ajout" placeholder="Titre de la journée">
+        <textarea id="texte_ajout" placeholder="Texte descriptif de la journée"></textarea>
+        <input id="imageFile_ajout" type="file" accept="image/*">
+        <button onclick="ajouterJourneeThematique()"><i class="fas fa-plus-circle"></i> Ajouter la journée</button>
 
-        <div id="events-container"></div>
-    </main>
+        <h2>Liste des journées à thèmes</h2>
+        <table id="tableau_journees_thematiques">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Titre</th>
+                    <th>Texte descriptif</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
-    <footer>
-        <p>&copy; 2025 MDL du Lycée Château Blanc</p>
-    </footer>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Modifier la journée</h2>
+            <input id="edit_titre" placeholder="Titre de la journée">
+            <textarea id="edit_texte" placeholder="Texte descriptif de la journée"></textarea>
+            <img id="modalImagePreview" src="" alt="Aperçu de l'image" style="display:none;">
+            <input id="edit_imageFile" type="file" accept="image/*">
+            <button onclick="enregistrerModification()"><i class="fas fa-save"></i> Enregistrer les modifications</button>
+        </div>
+    </div>
 
-    <button id="darkModeToggle" class="dark-mode-toggle">
-        🌙
-    </button>
-    <script src="script.js"></script>
     <script>
         // Vos clés Supabase
         const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
@@ -57,36 +240,169 @@
         const { createClient } = window.supabase;
         const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
         
-        async function chargerEvenements() {
-            const { data: journees, error } = await supabase
+        let editId = null;
+
+        async function chargerJourneesThematiques() {
+            const { data, error } = await supabase
                 .from("journees_thematiques")
                 .select("*")
                 .order("date_journee_thematique", { ascending: false });
 
             if (error) {
-                console.error("Erreur de chargement des événements :", error);
+                console.error("Erreur de chargement :", error);
                 return;
             }
 
-            const container = document.getElementById("events-container");
-            container.innerHTML = "";
-
-            journees.forEach(journee => {
-                const eventCard = document.createElement("section");
-                eventCard.classList.add("event");
-                
-                const formattedDate = new Date(journee.date_journee_thematique).toLocaleDateString();
-
-                eventCard.innerHTML = `
-                    <h2>${formattedDate} - ${journee.titre}</h2>
-                    <img src="${journee.url_image}" alt="${journee.titre}" style="max-width:100%; height:auto; border-radius:8px; margin-top:10px;">
-                    <p>${journee.texte_descriptif}</p>
+            const tbody = document.querySelector("#tableau_journees_thematiques tbody");
+            tbody.innerHTML = "";
+            data.forEach(journee => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><img src="${journee.url_image}" alt="${journee.titre}"></td>
+                    <td>${journee.titre}</td>
+                    <td>${journee.texte_descriptif}</td>
+                    <td>${new Date(journee.date_journee_thematique).toLocaleDateString()}</td>
+                    <td>
+                        <div class="actions-container">
+                            <button class="edit" onclick="openEditModal('${journee.id}')"><i class="fas fa-edit"></i> Modifier</button>
+                            <button class="delete" onclick="supprimerJourneeThematique('${journee.id}')"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                        </div>
+                    </td>
                 `;
-                container.appendChild(eventCard);
+                tbody.appendChild(tr);
             });
         }
 
-        document.addEventListener("DOMContentLoaded", chargerEvenements);
+        async function ajouterJourneeThematique() {
+            const titre = document.getElementById("titre_ajout").value;
+            const texte_descriptif = document.getElementById("texte_ajout").value;
+            const imageFile = document.getElementById("imageFile_ajout").files[0];
+
+            if (!titre || !texte_descriptif || !imageFile) {
+                alert("Veuillez remplir tous les champs et ajouter une image.");
+                return;
+            }
+
+            const { data: fileData, error: fileError } = await supabase.storage
+                .from('journees_thematiques_images')
+                .upload(`${Date.now()}_${imageFile.name}`, imageFile);
+            
+            if (fileError) {
+                console.error("Erreur de téléchargement d'image:", fileError);
+                alert("Erreur lors du téléchargement de l'image. Avez-vous configuré les règles de sécurité pour le bucket ?");
+                return;
+            }
+
+            const { data: publicURLData } = supabase.storage
+                .from('journees_thematiques_images')
+                .getPublicUrl(fileData.path);
+            
+            const url_image = publicURLData.publicUrl;
+
+            const { error: dbError } = await supabase
+                .from("journees_thematiques")
+                .insert([{ titre, texte_descriptif, url_image, date_journee_thematique: new Date() }]);
+
+            if (dbError) {
+                console.error("Erreur d'insertion :", dbError);
+                alert("Erreur lors de l'ajout de la journée à thème.");
+                return;
+            }
+
+            document.getElementById("titre_ajout").value = "";
+            document.getElementById("texte_ajout").value = "";
+            document.getElementById("imageFile_ajout").value = "";
+            
+            chargerJourneesThematiques();
+            alert("Journée à thème ajoutée avec succès !");
+        }
+
+        async function openEditModal(id) {
+            editId = id;
+            const { data, error } = await supabase.from('journees_thematiques').select('*').eq('id', id).single();
+            if (error) {
+                console.error('Erreur de récupération pour modification :', error);
+                return;
+            }
+
+            document.getElementById('edit_titre').value = data.titre;
+            document.getElementById('edit_texte').value = data.texte_descriptif;
+            document.getElementById('modalImagePreview').src = data.url_image;
+            document.getElementById('modalImagePreview').style.display = 'block';
+
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+            document.getElementById('edit_imageFile').value = '';
+            editId = null;
+        }
+
+        async function enregistrerModification() {
+            const titre = document.getElementById('edit_titre').value;
+            const texte_descriptif = document.getElementById('edit_texte').value;
+            const imageFile = document.getElementById('edit_imageFile').files[0];
+
+            if (!titre || !texte_descriptif) {
+                alert("Veuillez remplir le titre et le texte descriptif.");
+                return;
+            }
+
+            let updateData = {
+                titre: titre,
+                texte_descriptif: texte_descriptif
+            };
+
+            if (imageFile) {
+                const { data: fileData, error: fileError } = await supabase.storage
+                    .from('journees_thematiques_images')
+                    .upload(`${Date.now()}_${imageFile.name}`, imageFile);
+                if (fileError) {
+                    console.error("Erreur de téléchargement d'image:", fileError);
+                    alert("Erreur lors de la mise à jour de l'image.");
+                    return;
+                }
+                const { data: publicURLData } = supabase.storage.from('journees_thematiques_images').getPublicUrl(fileData.path);
+                updateData.url_image = publicURLData.publicUrl;
+            }
+
+            const { error } = await supabase.from('journees_thematiques').update(updateData).eq('id', editId);
+
+            if (error) {
+                console.error('Erreur lors de la mise à jour :', error);
+                alert('Erreur lors de la mise à jour de la journée à thème.');
+            } else {
+                closeModal();
+                chargerJourneesThematiques();
+                alert("Journée à thème mise à jour avec succès !");
+            }
+        }
+
+        async function supprimerJourneeThematique(id) {
+            if (!confirm("Voulez-vous vraiment supprimer cette journée à thème ?")) {
+                return;
+            }
+            const { error } = await supabase
+                .from("journees_thematiques")
+                .delete()
+                .eq("id", id);
+            if (error) {
+                console.error("Erreur de suppression :", error);
+                return;
+            }
+            chargerJourneesThematiques();
+            alert("Journée à thème supprimée avec succès !");
+        }
+
+        document.addEventListener("DOMContentLoaded", chargerJourneesThematiques);
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('editModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
     </script>
 </body>
 </html>
