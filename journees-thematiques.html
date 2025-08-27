@@ -5,9 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="rT7FhVtgQ3VDwmpmEIGLUB0xlYUB9ziTsrN9BKJCKbk" />
     <title>Journées à Thèmes - MDL du Lycée</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Styles généraux pour le corps de la page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Couleur de fond par défaut */
+            color: #333; /* Couleur de texte par défaut */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Mode sombre */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* Conteneur principal */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Titres */
+        .page-title {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Conteneur des événements (Flexbox) */
+        #events-container {
+            display: flex; /* Active le mode Flexbox */
+            flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+            gap: 20px; /* Ajoute un espacement entre les cartes */
+            justify-content: center; /* Centre les cartes horizontalement */
+        }
+
+        /* Carte d'événement */
+        .event-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Cache le débordement de l'image */
+            transition: transform 0.3s ease-in-out;
+            display: flex; /* Permet une mise en page flexible interne */
+            flex-direction: column; /* Organise l'image et le contenu en colonne */
+            width: 100%; /* Prend toute la largeur par défaut sur mobile */
+            max-width: 400px; /* Limite la largeur maximale sur les grands écrans */
+        }
+
+        .dark-mode .event-card {
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px); /* Effet de survol */
+        }
+
+        /* Image de l'événement */
+        .event-image {
+            width: 100%; /* L'image prend toute la largeur de son conteneur */
+            height: 250px; /* Hauteur fixe pour toutes les images */
+            object-fit: cover; /* Recadre l'image sans la déformer pour remplir l'espace */
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Contenu de l'événement */
+        .event-content {
+            padding: 20px;
+        }
+
+        .event-content h2 {
+            font-size: 1.5em;
+            margin-top: 0;
+            color: #333;
+        }
+
+        .dark-mode .event-content h2 {
+            color: #e0e0e0;
+        }
+
+        .event-content p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* Media Queries pour les ordinateurs */
+        @media (min-width: 768px) {
+            #events-container {
+                justify-content: flex-start; /* Aligne les cartes à gauche sur PC */
+            }
+
+            .event-card {
+                flex: 1 1 calc(33.333% - 20px); /* Affiche 3 cartes par ligne */
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
