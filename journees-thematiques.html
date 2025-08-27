@@ -18,7 +18,8 @@
             padding: 1.5rem;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff; /* À adapter à votre thème */
+            background-color: var(--card-background); /* Utilise une variable CSS pour la couleur de fond */
+            color: var(--text-color); /* Utilise une variable CSS pour la couleur du texte */
         }
 
         .event-image-container {
@@ -29,8 +30,8 @@
         }
 
         .event-image {
-            width: 100%; /* Utilisation de la largeur maximale du conteneur */
-            max-width: 500px; /* Taille maximale sur PC */
+            width: 100%;
+            max-width: 400px; /* Taille maximale encore plus petite sur PC */
             height: auto;
             border-radius: 8px;
             object-fit: cover;
@@ -40,6 +41,37 @@
             text-align: center;
         }
 
+        /* Variables CSS pour le mode clair et sombre */
+        :root {
+            --text-color: #333; /* Texte foncé en mode clair */
+            --card-background: #fff; /* Fond de carte clair en mode clair */
+            --title-color: #1a1a1a; /* Titre foncé en mode clair */
+            --subtitle-color: #555; /* Sous-titre foncé en mode clair */
+        }
+
+        /* Styles pour le mode sombre */
+        body.dark-mode {
+            --text-color: #e0e0e0; /* Texte clair en mode sombre */
+            --card-background: #333; /* Fond de carte sombre en mode sombre */
+            --title-color: #f5f5f5; /* Titre très clair en mode sombre */
+            --subtitle-color: #b0b0b0; /* Sous-titre légèrement plus clair en mode sombre */
+        }
+        
+        /* Appliquer les couleurs aux éléments de texte */
+        .event-content h2 {
+            color: var(--title-color);
+        }
+        .event-content p {
+            color: var(--text-color);
+        }
+        .page-title {
+            color: var(--title-color);
+        }
+        .page-subtitle {
+            color: var(--subtitle-color);
+        }
+
+
         /* Styles pour les écrans plus grands (PC) */
         @media (min-width: 768px) {
             .event-card {
@@ -48,13 +80,13 @@
             }
 
             .event-image-container {
-                width: 30%; /* Laisser de la place pour le texte */
+                width: 25%; /* Réduit la largeur du conteneur d'image sur PC */
                 margin-right: 1.5rem;
                 margin-bottom: 0;
             }
 
             .event-content {
-                width: 70%;
+                width: 75%; /* Augmente la largeur du contenu textuel sur PC */
             }
         }
     </style>
