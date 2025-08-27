@@ -55,7 +55,6 @@ function renderActualites(actualites) {
 
             const descriptionP = document.createElement('p');
             descriptionP.innerHTML = actualite.texte_descriptif.replace(/\n/g, '<br>');
-            descriptionP.style.fontFamily = '"Comic Sans MS", cursive, sans-serif'; // <-- Police modifiée
 
             const auteurP = document.createElement('p');
             auteurP.className = 'news-author';
