@@ -8,6 +8,56 @@
     <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Styles CSS pour les images et la mise en page */
+        .event-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff; /* À adapter à votre thème */
+        }
+
+        .event-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .event-image {
+            width: 100%; /* Utilisation de la largeur maximale du conteneur */
+            max-width: 500px; /* Taille maximale sur PC */
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .event-content {
+            text-align: center;
+        }
+
+        /* Styles pour les écrans plus grands (PC) */
+        @media (min-width: 768px) {
+            .event-card {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .event-image-container {
+                width: 30%; /* Laisser de la place pour le texte */
+                margin-right: 1.5rem;
+                margin-bottom: 0;
+            }
+
+            .event-content {
+                width: 70%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -79,7 +129,9 @@
                 eventCard.classList.add("event-card");
 
                 eventCard.innerHTML = `
-                    <img src="${journee.url_image}" alt="${journee.titre}" class="event-image">
+                    <div class="event-image-container">
+                        <img src="${journee.url_image}" alt="${journee.titre}" class="event-image">
+                    </div>
                     <div class="event-content">
                         <h2>${formattedDate} - ${journee.titre}</h2>
                         <p>${journee.texte_descriptif}</p>
