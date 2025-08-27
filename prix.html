@@ -36,95 +36,87 @@
     <main class="container">
         <h1>Les Prix</h1>
         <br>
-        
         <p>
             Pour bénéficier des prix adhérents, vous pouvez vous inscrire en cliquant sur le lien ci-dessous :<br>
-            <a href="http://adhesion-mdl-lptcb.vercel.app/" style="color: #FF9200; text-decoration: none;" target="_blank">
-                <b>Bénéficier des prix adhérents</b>
-            </a>
+            <a href="http://adhesion-mdl-lptcb.vercel.app/" style="color: #FF9200; text-decoration: none;" target="_blank"><b>Bénéficier des prix adhérents</b></a>
         </p>
         <br>
 
-        <!-- Section générée automatiquement -->
-        <section id="section-prix">
-            <p><i>Chargement des prix en cours...</i></p>
-        </section>
+        <!-- Conteneur où seront injectés les prix depuis Supabase -->
+        <div id="prix-container">Chargement des prix en cours...</div>
     </main>
 
     <footer>
         <p>&copy; 2025 MDL du Lycée Château Blanc</p>
     </footer>
 
-    <!-- Bouton dark mode -->
-    <button id="darkModeToggle" class="dark-mode-toggle">
-        🌙
-    </button>
+    <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
-    <script src="https://unpkg.com/@supabase/supabase-js"></script>
+    <!-- Script Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script>
-        const supabaseUrl = "https://iarukjyswplvmtcxjtbx.supabase.co";
-        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+      const SUPABASE_URL = "https://iarukjyswplvmtcxjtbx.supabase.co";
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcnVranlzd3Bsdm10Y3hqdGJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwNTYwMjUsImV4cCI6MjA3MTYzMjAyNX0.jC33JZm5vwOROpxEMBCRQTaGwe-TF06fRMHg1UcoHxY";
+      const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        async function chargerPrix() {
-            const { data, error } = await supabase
-                .from("prix")
-                .select("*")
-                .order("categorie", { ascending: true });
+      async function chargerPrix() {
+        const container = document.getElementById("prix-container");
+        container.innerHTML = "Chargement des prix en cours...";
 
-            const container = document.getElementById("section-prix");
+        const { data, error } = await client
+          .from("prix")
+          .select("*")
+          .order("categorie", { ascending: true });
 
-            if (error) {
-                container.innerHTML = "<p>❌ Erreur lors du chargement des prix.</p>";
-                console.error(error);
-                return;
-            }
-
-            if (!data || data.length === 0) {
-                container.innerHTML = "<p>Aucun prix défini pour le moment.</p>";
-                return;
-            }
-
-            // Grouper par catégorie
-            const categories = {};
-            data.forEach(item => {
-                if (!categories[item.categorie]) categories[item.categorie] = [];
-                categories[item.categorie].push(item);
-            });
-
-            // Générer les sections
-            container.innerHTML = "";
-            for (const [categorie, produits] of Object.entries(categories)) {
-                let html = `
-                    <section>
-                        <h2>${categorie}</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prix Adhérent</th>
-                                    <th>Prix Non-Adhérent</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                `;
-                produits.forEach(p => {
-                    html += `
-                        <tr>
-                            <td>${p.nom}</td>
-                            <td>${p.prix_adherent !== null ? p.prix_adherent + " €" : "Non défini"}</td>
-                            <td>${p.prix_non_adherent !== null ? p.prix_non_adherent + " €" : "Non défini"}</td>
-                        </tr>
-                    `;
-                });
-                html += `</tbody></table></section>`;
-                container.innerHTML += html;
-            }
+        if (error) {
+          console.error("Erreur :", error);
+          container.innerHTML = "Erreur lors du chargement des prix.";
+          return;
         }
 
-        chargerPrix();
+        // Grouper les produits par catégorie
+        const sections = {};
+        data.forEach(item => {
+          if (!sections[item.categorie]) {
+            sections[item.categorie] = [];
+          }
+          sections[item.categorie].push(item);
+        });
+
+        // Construire le HTML
+        container.innerHTML = "";
+        for (const [categorie, produits] of Object.entries(sections)) {
+          let html = `
+            <section>
+              <h2>${categorie}</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Prix Adhérent</th>
+                    <th>Prix Non-Adhérent</th>
+                  </tr>
+                </thead>
+                <tbody>
+          `;
+          produits.forEach(p => {
+            html += `
+              <tr>
+                <td>${p.nom}</td>
+                <td>${p.prix_adherent !== null ? p.prix_adherent.toFixed(2) + " €" : "Non défini"}</td>
+                <td>${p.prix_non_adherent !== null ? p.prix_non_adherent.toFixed(2) + " €" : "Non défini"}</td>
+              </tr>
+            `;
+          });
+          html += `</tbody></table></section>`;
+          container.innerHTML += html;
+        }
+      }
+
+      chargerPrix();
     </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
