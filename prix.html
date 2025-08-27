@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="rT7FhVtgQ3VDwmpmEIGLUB0xlYUB9ziTsrN9BKJCKbk" />
     <title>Prix - MDL du Lycée</title>
     <link rel="stylesheet" href="style.css">
     <link rel="website icon" type="png" href="images/logos/mdl-onglet.png">
@@ -10,23 +11,47 @@
 <body>
     <header>
         <nav>
-            <div class="logo"><a href="index.html"><img src="/images/logos/mdl-lycee-sombre.png" alt="logo"></a></div>
+            <div class="logo">
+                <a href="https://mdl-lptcb.vercel.app">
+                    <img src="/images/logos/mdl-lycee-sombre.png" alt="logo">
+                </a>
+            </div>
+            <button class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="index.html">Accueil</a></li>
+                <li><a href="journees-thematiques.html">Journées à Thèmes</a></li>
+                <li><a href="actualites.html">Actualités</a></li>
+                <li><a href="trombinoscope.html">Notre équipe</a></li>
+                <li><a href="horaires.html">Horaires d'ouverture</a></li>
+                <li><a href="vente.html">Vente</a></li>
                 <li><a href="prix.html" class="active">Prix</a></li>
-                <li><a href="gestion_prix.html">Gestion</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="boite-a-idee.html">Boite à idées</a></li>
+                <li><a href="https://my.matterport.com/show/?m=zjwMjjYAivi" target="_blank">Visite virtuelle</a></li>
             </ul>
+            <a href="https://page-de-connexion-html.vercel.app" class="login-button">Espace membre</a>
         </nav>
     </header>
 
     <main class="container">
         <h1>Les Prix</h1>
+        <br>
+        
         <p>
-            Pour bénéficier des prix adhérents, vous pouvez vous inscrire : 
-            <a href="http://adhesion-mdl-lptcb.vercel.app/" target="_blank"><b>Bénéficier des prix adhérents</b></a>
+            Pour bénéficier des prix adhérents, vous pouvez vous inscrire en cliquant sur le lien ci-dessous :<br>
+            <a href="http://adhesion-mdl-lptcb.vercel.app/" style="color: #FF9200; text-decoration: none;" target="_blank">
+                <b>Bénéficier des prix adhérents</b>
+            </a>
         </p>
+        <br>
+
+        <!-- Section générée automatiquement -->
         <section id="section-prix">
-            <p><i>Chargement des prix...</i></p>
+            <p><i>Chargement des prix en cours...</i></p>
         </section>
     </main>
 
@@ -34,6 +59,13 @@
         <p>&copy; 2025 MDL du Lycée Château Blanc</p>
     </footer>
 
+    <!-- Bouton dark mode -->
+    <button id="darkModeToggle" class="dark-mode-toggle">
+        🌙
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
     <script>
         const supabaseUrl = "https://iarukjyswplvmtcxjtbx.supabase.co";
@@ -49,13 +81,13 @@
             const container = document.getElementById("section-prix");
 
             if (error) {
-                container.innerHTML = "<p>❌ Erreur de chargement</p>";
+                container.innerHTML = "<p>❌ Erreur lors du chargement des prix.</p>";
                 console.error(error);
                 return;
             }
 
             if (!data || data.length === 0) {
-                container.innerHTML = "<p>Aucun prix défini.</p>";
+                container.innerHTML = "<p>Aucun prix défini pour le moment.</p>";
                 return;
             }
 
